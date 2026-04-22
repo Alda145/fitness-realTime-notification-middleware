@@ -1,0 +1,68 @@
+.goal {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(rgba(255, 245, 225, 0.9), rgba(12, 24, 68, 0.9)),
+        url("../../../images/goalBackgroundImg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.goal::after {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    margin-right: -200px;
+    transform: skew(18deg);
+    background: rgba(200, 0, 54, 0.1);
+    z-index: 0;
+}
+
+.display-h2 {
+    color: #0e1a3a
+}
+
+.iconFitness {
+    height: 12%;
+    width: 12%;
+    background-color: #c80036;
+}
+
+.iconFitness img {
+    transform: skewX(-17deg);
+}
+
+.backdrop-blur {
+    transform: skewX(17deg);
+}
+
+.fitnessSmallText {
+
+    color: #0e1a3a
+}
+
+.image-position {
+    transform: translateY(113px);
+    object-fit: cover;
+}
+
+.readDetails {
+    transform: skewX(17deg);
+    background-color: #c80036;
+    color: white;
+    border: none;
+}
+
+.readDetails:hover {
+
+    background-color: white;
+    color: #0e1a3a;
+}
+
+.readDetails span {
+    display: inline-block;
+    transform: skewX(-17deg);
+}

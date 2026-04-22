@@ -1,0 +1,182 @@
+{
+    "common": {
+        "home": "Home",
+        "about": "About",
+        "courses": "Courses",
+        "blog": "Blogs",
+        "page": "Pages",
+        "feature": "Our Features",
+        "testimonial": "Testimonial",
+        "team": "Our Team",
+        "contact": "Contact",
+        "login": "Login",
+        "register": "Register",
+        "readMore": "Read More",
+        "watchVideo": "Watch Video",
+        "learnMore": "Learn More",
+        "bookNow": "Book Now",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "price": "Get Pricing"
+    },
+    "caruselImages": {
+        "title": "WELCOME TO OUR FITNESS CENTER",
+        "subtitle": "Stay healthy by exercising \n at the best gym center",
+        "paragraph": "All the services in our fitness"
+    },
+    "aboutSection": {
+        "subtitle": "<1>About Fitness Center</1>",
+        "title": "We are the best at fulfilling your potential and achieving your goals.",
+        "description": "Our fitness center is designed to help you build strength, improve endurance, and stay motivated every day. With professional trainers and a supportive environment, we help you take real steps toward a healthier lifestyle.",
+        "mission": "Our Mission",
+        "vision": "Our Vision",
+        "goal": "Our Goal",
+        "missionText": "We are committed to helping every member feel stronger, healthier, and more confident through expert guidance, modern training methods, and a welcoming fitness community.",
+        "appointmentButton": "Make Appointment",
+        "callText": "Call to Our Experts",
+        "phoneLabel": "Free:",
+        "phoneNumber": "+0123 456 7890"
+    },
+    "goalSection": {
+        "subtitle": "FITNESS GOAL",
+        "title": "Complete your possibilities \n Achieve Your Fitness Goals.",
+        "titleOne": "Free Fitness Training",
+        "descriptionOne": "Join our free training sessions designed to improve your strength, endurance, and overall fitness performance.",
+        "titleTwo": "Cardio and Strength",
+        "descriptionTwo": "Boost your stamina and build muscle with our balanced cardio and strength training programs.",
+        "button": "Read Details"
+    },
+    "highlightSection": {
+        "subtitle": "Why choose us?",
+        "title": "Our Highlights Below",
+        "description": "We are committed to helping every member feel stronger, healthier, and more confident through expert guidance, modern training methods, and a welcoming fitness community.",
+        "readMore": "Read More"
+    },
+    "coursesSection": {
+        "title": "Our Courses",
+        "subtitle": "Explore Our Fitness Courses",
+        "description": "Train with professional coaches and achieve your goals through structured and effective workout programs.",
+        "moreCourses": "More Courses"
+    },
+    "blogSection": {
+        "title": "Our Blogs",
+        "subtitle": "Check out our latest stories",
+        "description": "Stay updated with the latest fitness tips, workout guides, and health insights on our blog.",
+        "readMore": "Read More"
+    },
+    "exploreSection": {
+        "title": " Explore Fitness Center",
+        "watchVideo": "Watch Video"
+    },
+    "teamSection": {
+        "title": "Our Trainer",
+        "subtitle": "Meet Our Amazing Team",
+        "description": "Meet our dedicated fitness team, committed to guiding you toward a stronger and healthier lifestyle."
+    },
+    "testimonials": {
+        "title": "Our Trainer",
+        "subtitle": "Meet Our Amazing Team"
+    },
+    "contactSection": {
+        "title": "Contact Us",
+        "subtitle": " Contact With Team Of \n Experts",
+        "description": " The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes.",
+        "download": "Download now",
+        "adress": "Address",
+        "mailUs": "Mail Us",
+        "telephone": "Telephone",
+        "sito": "Yoursite@ex.com",
+        "join": "Want To Join Our  \n Talented Team",
+        "website": " visit our website",
+        "getInTouch": "Get In touch",
+        "name": "Your Name",
+        "email": "Your Email",
+        "phone": "Your Phone",
+        "subject": "Subject",
+        "message": "Message",
+        "sendMessage": "Send Message",
+        "messageSucces": "Email is successfully send!"
+    },
+    "appointmentModal": {
+        "title": "Make Appointment",
+        "details":"Your Details",
+        "fullName":"Full Name",
+        "enterName":"Enter your full name",
+        "phone":"Phone",
+        "enterPhone":"Enter your phone",
+        "notes":"Notes",
+        "enterNotes":"Any extra details...",
+        "selectedAppointment":"Selected Appointment",
+        "noSelected":"No time selected yet",
+        "close":"Close",
+        "confirm":"Confirm Appointment"
+    },
+    "footer": {
+        "quickLinks": "Quick Links",
+        "recentWorks": "Recent Works",
+        "description": "Your journey to a healthier, stronger life starts here—train with us and stay motivated every day.",
+        "newsletter": "NEWSLETTER",
+        "descripionNewsletter": " Subscribe to get latest updates",
+        "rights": "All Rights Reserved.",
+        "home": "Home",
+        "about": "About",
+        "services": "Services",
+        "contact": "Contact",
+        "email": "Your Email",
+        "subscribe": "Subscribe"
+    },
+    "about": {
+        "title": "About us",
+        "current": "About"
+    },
+    "courses": {
+        "title": "Our Courses",
+        "current": "Course"
+    },
+    "blogs": {
+        "title": "Our Blogs",
+        "current": "Blog"
+    },
+    "features": {
+        "title": "Our Features",
+        "current": "Feature"
+    },
+    "testimonial": {
+        "title": "Our Testimonials",
+        "current": "Testimonial"
+    },
+    "team": {
+        "title": "Our Team",
+        "current": "Team"
+    },
+    "contact": {
+        "title": "Our Contacts",
+        "current": "Contact"
+    },
+    "breadcrumbSection": {
+        "home": "Home",
+        "pages": "Pages"
+    },
+    "auth": {
+        "loginTitle": "Login",
+        "registerTitle": "Register",
+        "email": "Email",
+        "password": "Password",
+        "name": "Name",
+        "lastname": "Last Name"
+    },
+    "appointment": {
+        "title": "Book Appointment",
+        "noSlots": "No available slots",
+        "success": "Appointment booked successfully"
+    },
+    "admin": {
+        "dashboard": "Dashboard",
+        "trainers": "Trainers",
+        "courses": "Courses",
+        "appointments": "Appointments",
+        "blockedSlots": "Blocked Slots",
+        "addTrainer": "Add Trainer",
+        "addCourse": "Add Course"
+    }
+}

@@ -1,0 +1,182 @@
+{
+    "common": {
+        "home": "Home",
+        "about": "Chi siamo",
+        "courses": "Corsi",
+        "blog": "Blog",
+        "page": "Pagine",
+        "feature": "Le Nostre Caratteristiche",
+        "testimonial": "Testimonianza",
+        "team": "Il Nostro Team",
+        "contact": "Contatto",
+        "login": "Accedi",
+        "register": "Registrati",
+        "readMore": "Leggi di più",
+        "watchVideo": "Guarda il video",
+        "learnMore": "Scopri di più",
+        "bookNow": "Prenota ora",
+        "submit": "Invia",
+        "cancel": "Annulla",
+        "price": "Ottieni il prezzo"
+    },
+    "caruselImages": {
+        "title": "BENVENUTO NEL NOSTRO CENTRO FITNESS",
+        "subtitle": "Rimani in salute allenandoti \n nel miglior centro fitness",
+        "paragraph": "Tutti i servizi del nostro centro fitness"
+    },
+    "aboutSection": {
+        "subtitle": "<1>Informazioni sul Centro Fitness</1>",
+        "title": "Siamo i migliori nel valorizzare il tuo potenziale e aiutarti a raggiungere i tuoi obiettivi.",
+        "description": "Il nostro centro fitness è progettato per aiutarti a sviluppare forza, migliorare la resistenza e rimanere motivato ogni giorno. Con allenatori professionisti e un ambiente accogliente, ti aiutiamo a compiere passi concreti verso uno stile di vita più sano.",
+        "mission": "La Nostra Missione",
+        "vision": "La Nostra Visione",
+        "goal": "Il Nostro Obiettivo",
+        "missionText": "Ci impegniamo ad aiutare ogni membro a sentirsi più forte, più sano e più sicuro di sé attraverso una guida esperta, metodi di allenamento moderni e una comunità fitness accogliente.",
+        "appointmentButton": "Prenota un appuntamento",
+        "callText": "Chiama i nostri esperti",
+        "phoneLabel": "Gratuito:",
+        "phoneNumber": "+0123 456 7890"
+    },
+    "goalSection": {
+        "subtitle": "OBIETTIVO FITNESS",
+        "title": "Sfrutta al massimo il tuo potenziale \n Raggiungi i tuoi obiettivi fitness.",
+        "titleOne": "Allenamento Fitness Gratuito",
+        "descriptionOne": "Partecipa alle nostre sessioni di allenamento gratuite progettate per migliorare forza, resistenza e prestazioni fisiche generali.",
+        "titleTwo": "Cardio e Forza",
+        "descriptionTwo": "Aumenta la tua resistenza e sviluppa i muscoli con i nostri programmi equilibrati di cardio e forza.",
+        "button": "Leggi i dettagli"
+    },
+    "highlightSection": {
+        "subtitle": "Perché scegliere noi?",
+        "title": "I Nostri Punti di Forza",
+        "description": "Ci impegniamo ad aiutare ogni membro a sentirsi più forte, più sano e più sicuro di sé attraverso una guida esperta, metodi di allenamento moderni e una comunità fitness accogliente.",
+        "readMore": "Leggi di più"
+    },
+    "coursesSection": {
+        "title": "I Nostri Corsi",
+        "subtitle": "Esplora i nostri corsi fitness",
+        "description": "Allenati con coach professionisti e raggiungi i tuoi obiettivi attraverso programmi di allenamento strutturati ed efficaci.",
+        "moreCourses": "Più corsi"
+    },
+    "blogSection": {
+        "title": "I Nostri Blog",
+        "subtitle": "Scopri le nostre ultime storie",
+        "description": "Rimani aggiornato con gli ultimi consigli fitness, guide di allenamento e suggerimenti per la salute sul nostro blog.",
+        "readMore": "Leggi di più"
+    },
+    "exploreSection": {
+        "title": " Esplora il Centro Fitness",
+        "watchVideo": "Guarda il video"
+    },
+    "teamSection": {
+        "title": "Il Nostro Allenatore",
+        "subtitle": "Incontra il Nostro Fantastico Team",
+        "description": "Conosci il nostro team fitness dedicato, impegnato a guidarti verso uno stile di vita più forte e più sano."
+    },
+    "testimonials": {
+        "title": "Il Nostro Allenatore",
+        "subtitle": "Incontra il Nostro Fantastico Team"
+    },
+    "contactSection": {
+        "title": "Contattaci",
+        "subtitle": " Contatta il team di \n esperti",
+        "description": " Il modulo di contatto è attualmente inattivo. Ottieni un modulo di contatto funzionante con Ajax e PHP in pochi minuti.",
+        "download": "Scarica ora",
+        "adress": "Indirizzo",
+        "mailUs": "Scrivici",
+        "telephone": "Telefono",
+        "sito": "Yoursite@ex.com",
+        "join": "Vuoi unirti al nostro  \n talentuoso team",
+        "website": " visita il nostro sito web",
+        "getInTouch": "Mettiti in contatto",
+        "name": "Il tuo nome",
+        "email": "La tua email",
+        "phone": "Il tuo telefono",
+        "subject": "Oggetto",
+        "message": "Messaggio",
+        "sendMessage": "Invia messaggio",
+        "messageSucces": "L'email è stata inviata con successo!"
+    },
+    "appointmentModal": {
+        "title": "Prenota un appuntamento",
+        "details": "I tuoi dati",
+        "fullName": "Nome completo",
+        "enterName": "Inserisci il tuo nome completo",
+        "phone": "Telefono",
+        "enterPhone": "Inserisci il tuo numero di telefono",
+        "notes": "Note",
+        "enterNotes": "Dettagli aggiuntivi...",
+        "selectedAppointment": "Appuntamento selezionato",
+        "noSelected": "Nessun orario selezionato",
+        "close": "Chiudi",
+        "confirm": "Conferma appuntamento"
+    },
+    "footer": {
+        "quickLinks": "Link rapidi",
+        "recentWorks": "Lavori recenti",
+        "description": "Il tuo percorso verso una vita più sana e più forte inizia qui: allenati con noi e resta motivato ogni giorno.",
+        "newsletter": "NEWSLETTER",
+        "descripionNewsletter": " Iscriviti per ricevere gli ultimi aggiornamenti",
+        "rights": "Tutti i diritti riservati.",
+        "home": "Home",
+        "about": "Chi siamo",
+        "services": "Servizi",
+        "contact": "Contatto",
+        "email":"La tua email",
+        "subscribe":"Iscriviti"
+    },
+    "about": {
+        "title": "Chi siamo",
+        "current": "Chi siamo"
+    },
+    "courses": {
+        "title": "I Nostri Corsi",
+        "current": "Corso"
+    },
+    "blogs": {
+        "title": "I Nostri Blog",
+        "current": "Blog"
+    },
+    "features": {
+        "title": "Le Nostre Caratteristiche",
+        "current": "Caratteristica"
+    },
+    "testimonial": {
+        "title": "Le Nostre Testimonianze",
+        "current": "Testimonianza"
+    },
+    "team": {
+        "title": "Il Nostro Team",
+        "current": "Team"
+    },
+    "contact": {
+        "title": "I Nostri Contatti",
+        "current": "Contatto"
+    },
+    "breadcrumbSection": {
+        "home": "Home",
+        "pages": "Pagine"
+    },
+    "auth": {
+        "loginTitle": "Accedi",
+        "registerTitle": "Registrati",
+        "email": "Email",
+        "password": "Password",
+        "name": "Nome",
+        "lastname": "Cognome"
+    },
+    "appointment": {
+        "title": "Prenota un appuntamento",
+        "noSlots": "Nessuna fascia oraria disponibile",
+        "success": "Appuntamento prenotato con successo"
+    },
+    "admin": {
+        "dashboard": "Dashboard",
+        "trainers": "Allenatori",
+        "courses": "Corsi",
+        "appointments": "Appuntamenti",
+        "blockedSlots": "Fasce bloccate",
+        "addTrainer": "Aggiungi allenatore",
+        "addCourse": "Aggiungi corso"
+    }
+}

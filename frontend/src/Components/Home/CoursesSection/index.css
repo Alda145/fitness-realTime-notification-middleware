@@ -1,0 +1,115 @@
+/* BACKGROUND SECTION */
+.courses {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(rgba(12, 24, 68, 0.7), rgba(12, 24, 68, 0.7)),
+        url(../../../images/servicesImg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* CARD STYLE */
+.courses .card {
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    transform: skewX(0deg);
+    overflow: hidden;
+}
+
+.courses .card:hover {
+    transform: skewX(-5deg);
+    background-color: #0e1a3a !important;
+}
+
+.classSkew {
+    transform: skewX(0deg);
+    transition: all 0.3s ease;
+}
+
+.courses .card:hover .classSkew {
+    transform: skewX(5deg);
+}
+
+/* ICON BOX */
+.imageIcon {
+    background: #c80036;
+    padding: 5px;
+    border-radius: 6px;
+}
+
+.imageStyle {
+    filter: grayscale(100%);
+}
+
+.courses .card:hover .imageStyle {
+    filter: grayscale(0%) !important;
+}
+
+/* TEXT COLORS */
+.titleColor {
+    color: #0e1a3a !important;
+}
+
+.courses .card:hover .titleColor {
+    color: #ffffff !important;
+}
+
+.courses .card:hover .card-text {
+    color: #d1d5db !important;
+}
+
+.courses .card:hover .trainer-meta-name {
+    color: #ffffff !important;
+}
+
+.courses .card:hover .course-meta-line {
+    color: #e5e7eb !important;
+}
+
+/* TRAINER IMAGE */
+.courses .card .rounded-circle {
+    object-fit: cover;
+}
+
+/* BUTTON STYLE */
+.readMore {
+    background-color: #c80036;
+    transform: skewX(5deg);
+    border: none;
+}
+
+.readMore span {
+    display: inline-block;
+    transform: skewX(-5deg);
+}
+
+.readMore:hover {
+    color: #c80036;
+    background-color: white;
+}
+
+.moreCoursesBtn {
+    background-color: #c80036;
+    transform: skewX(5deg);
+    border: none;
+}
+
+.moreCoursesBtn span {
+    display: inline-block;
+    transform: skewX(-5deg);
+}
+
+.moreCoursesBtn:hover {
+    background-color: white;
+    color: #0e1a3a;
+}
+
+/* HEADER COLORS */
+.ourTrainer {
+    color: #c80036;
+}
+
+.ourTeam {
+    color: #ffffff;
+}

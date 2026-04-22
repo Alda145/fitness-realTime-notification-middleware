@@ -1,0 +1,4 @@
+.modal-backdrop.show {
+    background-color: rgba(128, 128, 128, 0.5);
+    /* gri */
+}

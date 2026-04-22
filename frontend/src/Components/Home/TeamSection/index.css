@@ -1,0 +1,77 @@
+.team-card {
+    transform: skewY(-4deg);
+    transition: transform 0.5s ease;
+}
+
+.team-card .card-body {
+    transform: skewY(4deg);
+}
+
+.team-card:hover {
+    transform: skewY(4deg);
+}
+
+.team-card:hover .card-body {
+    transform: skewY(4deg);
+    transition: transform 0.5s;
+}
+
+.team-img img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* socials hidden by default */
+.team-socials {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.35s ease;
+}
+
+.team-card:hover .team-socials {
+    opacity: 1;
+    visibility: visible;
+}
+
+.social-icon {
+    background: #e11d48;
+    color: white;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.social-icon:hover {
+    opacity: 0.85;
+    color: white;
+}
+
+.ourTrainer {
+    color: #c80036;
+}
+
+.ourTeam {
+    color: #0e1a3a;
+}
+
+.trainerName {
+    color: #0e1a3a;
+}
+
+
+.nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

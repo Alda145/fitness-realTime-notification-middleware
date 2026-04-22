@@ -1,0 +1,128 @@
+{
+    "common": {
+        "home": "Inicio",
+        "about": "Sobre nosotros",
+        "courses": "Cursos",
+        "blog": "Blogs",
+        "page": "Páginas",
+        "feature": "Nuestras características",
+        "testimonial": "Testimonios",
+        "team": "Nuestro equipo",
+        "contact": "Contacto",
+        "login": "Iniciar sesión",
+        "register": "Registrarse",
+        "readMore": "Leer más",
+        "watchVideo": "Ver video",
+        "learnMore": "Aprender más",
+        "bookNow": "Reservar ahora",
+        "submit": "Enviar",
+        "cancel": "Cancelar",
+        "price": "Ver precios"
+    },
+    "caruselImages": {
+        "title": "BIENVENIDO A NUESTRO CENTRO FITNESS",
+        "subtitle": "Mantente saludable haciendo ejercicio \n en el mejor gimnasio",
+        "paragraph": "Todos los servicios en nuestro fitness"
+    },
+    "aboutSection": {
+        "subtitle": "<1>Sobre el centro de fitness</1>",
+        "title": "Somos los mejores en desarrollar tu potencial y alcanzar tus objetivos.",
+        "description": "Nuestro centro de fitness está diseñado para ayudarte a desarrollar fuerza, mejorar la resistencia y mantenerte motivado cada día. Con entrenadores profesionales y un ambiente positivo, te ayudamos a lograr un estilo de vida más saludable.",
+        "mission": "Nuestra misión",
+        "vision": "Nuestra visión",
+        "goal": "Nuestro objetivo",
+        "missionText": "Estamos comprometidos a ayudar a cada miembro a ser más fuerte, saludable y seguro de sí mismo mediante orientación experta, métodos modernos de entrenamiento y una comunidad acogedora.",
+        "appointmentButton": "Reservar cita",
+        "callText": "Llama a nuestros expertos",
+        "phoneLabel": "Gratis:",
+        "phoneNumber": "+0123 456 7890"
+    },
+    "goalSection": {
+        "subtitle": "OBJETIVO FITNESS",
+        "title": "Completa tus posibilidades \n alcanza tus objetivos fitness.",
+        "titleOne": "Entrenamiento gratuito",
+        "descriptionOne": "Únete a nuestras sesiones gratuitas diseñadas para mejorar tu fuerza, resistencia y rendimiento físico.",
+        "titleTwo": "Cardio y fuerza",
+        "descriptionTwo": "Aumenta tu resistencia y desarrolla músculo con nuestros programas equilibrados.",
+        "button": "Ver detalles"
+    },
+    "highlightSection": {
+        "subtitle": "¿Por qué elegirnos?",
+        "title": "Nuestros puntos destacados",
+        "description": "Estamos comprometidos a ayudar a cada miembro a ser más fuerte, saludable y seguro de sí mismo mediante orientación experta y métodos modernos.",
+        "readMore": "Leer más"
+    },
+    "coursesSection": {
+        "title": "Nuestros cursos",
+        "subtitle": "Explora nuestros cursos fitness",
+        "description": "Entrena con entrenadores profesionales y alcanza tus objetivos.",
+        "moreCourses": "Más cursos"
+    },
+    "blogSection": {
+        "title": "Nuestros blogs",
+        "subtitle": "Descubre nuestras últimas historias",
+        "description": "Mantente actualizado con consejos fitness y guías de entrenamiento.",
+        "readMore": "Leer más"
+    },
+    "exploreSection": {
+        "title": "Explora el centro fitness",
+        "watchVideo": "Ver video"
+    },
+    "teamSection": {
+        "title": "Nuestro entrenador",
+        "subtitle": "Conoce a nuestro increíble equipo",
+        "description": "Conoce a nuestro equipo dedicado que te ayudará a mejorar tu estilo de vida."
+    },
+    "testimonials": {
+        "title": "Nuestro entrenador",
+        "subtitle": "Conoce a nuestro increíble equipo"
+    },
+    "contactSection": {
+        "title": "Contáctanos",
+        "subtitle": "Contacta con nuestro equipo \n de expertos",
+        "description": "El formulario de contacto está inactivo. Obtén uno funcional en minutos.",
+        "download": "Descargar ahora",
+        "adress": "Dirección",
+        "mailUs": "Envíanos un correo",
+        "telephone": "Teléfono",
+        "sito": "Yoursite@ex.com",
+        "join": "¿Quieres unirte a nuestro \n equipo talentoso?",
+        "website": "visita nuestro sitio web",
+        "getInTouch": "Ponte en contacto",
+        "name": "Tu nombre",
+        "email": "Tu correo",
+        "phone": "Tu teléfono",
+        "subject": "Asunto",
+        "message": "Mensaje",
+        "sendMessage": "Enviar mensaje",
+        "messageSucces": "¡Correo enviado correctamente!"
+    },
+    "appointmentModal": {
+        "title": "Reservar cita",
+        "details": "Tus datos",
+        "fullName": "Nombre completo",
+        "enterName": "Introduce tu nombre completo",
+        "phone": "Teléfono",
+        "enterPhone": "Introduce tu teléfono",
+        "notes": "Notas",
+        "enterNotes": "Detalles adicionales...",
+        "selectedAppointment": "Cita seleccionada",
+        "noSelected": "Aún no hay hora seleccionada",
+        "close": "Cerrar",
+        "confirm": "Confirmar cita"
+    },
+    "footer": {
+        "quickLinks": "Enlaces rápidos",
+        "recentWorks": "Trabajos recientes",
+        "description": "Tu camino hacia una vida más saludable comienza aquí.",
+        "newsletter": "BOLETÍN",
+        "descripionNewsletter": "Suscríbete para recibir novedades",
+        "rights": "Todos los derechos reservados.",
+        "home": "Inicio",
+        "about": "Sobre nosotros",
+        "services": "Servicios",
+        "contact": "Contacto",
+        "email": "Tu correo",
+        "subscribe": "Suscribirse"
+    }
+}

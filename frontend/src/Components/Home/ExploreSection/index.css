@@ -1,0 +1,22 @@
+.explore {
+    min-height: 380px;
+    background:
+        linear-gradient(rgba(12, 24, 68, 0.7), rgba(12, 24, 68, 0.7)),
+        url("../../../images/servicesImg.jpg") center / cover no-repeat;
+}
+.buttonClass{
+    background-color: #c80036;
+    border: none;
+    transform: skewX(12deg);
+}
+.buttonClass span{
+    display: inline-block;
+    transform: skewX(-12deg);
+
+}
+.buttonClass:hover {
+    background-color: white;
+    border: none;
+    color: #0e1a3a;
+    transform: skewX(12deg);
+}

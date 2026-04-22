@@ -1,0 +1,9 @@
+.fc .fc-toolbar-title {
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    .fc .fc-toolbar-title {
+        font-size: 1.1rem;
+    }
+}

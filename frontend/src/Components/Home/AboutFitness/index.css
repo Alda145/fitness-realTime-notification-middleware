@@ -1,0 +1,146 @@
+.about-section {
+    min-height: 500px;
+    background-color: #0e1a3a;
+}
+
+.text-color-about {
+    color: #c80036;
+    font-size: 1vw;
+}
+
+.imageCouple {
+    height: 100%;
+    align-items: flex-end;
+}
+
+.about-image {
+    object-fit: cover;
+    width: 100%;
+    transform: translateY(60px);
+}
+
+
+.ourMission {
+    background-color: #c80036;
+    border-color: #c80036;
+    display: inline-block;
+    transform: skewX(20deg);
+}
+
+.ourMission span {
+    display: inline-block;
+    transform: skewX(-20deg);
+    color: white;
+}
+
+.ourVision,
+.ourGoal {
+    background-color: white;
+    border-color: white;
+    color: #0e1a3a;
+    display: inline-block;
+    transform: skewX(20deg);
+}
+
+.ourVision span {
+
+    display: inline-block;
+    transform: skewX(-20deg);
+
+}
+
+.ourGoal span {
+
+    display: inline-block;
+    transform: skewX(-20deg);
+
+}
+
+.ourMission:hover {
+    background-color: #c80036;
+    border-color: #c80036;
+}
+
+.ourVision:hover,
+.ourGoal:hover {
+    background-color: white;
+    border-color: white;
+    color: #0e1a3a;
+}
+
+.makeAppointment {
+    display: inline-block;
+    background-color: #c80036 !important;
+    border: none;
+    transform: skewX(20deg);
+    color: white !important;
+}
+
+
+.makeAppointment span {
+    display: inline-block;
+    transform: skewX(-20deg);
+}
+
+.makeAppointment:hover {
+    display: inline-block;
+    background-color: white !important;
+    border: none;
+    transform: skewX(20deg);
+    color: #0e1a3a !important;
+}
+
+.rocket {
+    font-size: 200px;
+}
+
+.phone {
+    display: inline-block;
+    background-color: #fff5e1 !important;
+    color: #c80036;
+    border: none;
+    transform: skewX(20deg);
+
+}
+
+.phone span {
+    display: inline-block;
+    transform: skewX(-20deg);
+
+}
+
+.phone:hover {
+    background-color: #c80036 !important;
+    color: white;
+    display: inline-block;
+
+}
+
+
+
+.gap-app {
+    gap: 4rem;
+}
+
+.gap-call {
+    gap: 2rem;
+}
+
+.z-2 {
+    position: relative;
+    z-index: 2;
+}
+
+/* background diagonal */
+
+.about-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -350px;
+    width: 65%;
+    height: 100%;
+    background: #c80036;
+    transform: skew(28deg);
+    z-index: 0;
+}
