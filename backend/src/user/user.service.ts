@@ -33,4 +33,8 @@ export class UserService {
             throw new ErrorHandler(error.message, HttpStatus.NOT_FOUND)
         }
     }
+    
+    public findOne(id: number) {
+        return this.userRepository.findOne({ where: { id } });
+    }
 }

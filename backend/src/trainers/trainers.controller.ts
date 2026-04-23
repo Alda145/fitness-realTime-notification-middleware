@@ -16,6 +16,8 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { AdminGuard } from '../guards/admin.guards';
+import { RolesGuard } from 'src/guards/roles.guard';
+import { Roles } from 'src/Decorators/AdminRole.decorator';
 
 
 @Controller('trainers')
@@ -51,7 +53,8 @@ export class TrainersController {
     }
 
 
-    @UseGuards(AdminGuard)
+    @UseGuards(RolesGuard)
+    @Roles('manager')
     @Get(':id')
     findOne(@Param('id') id: string) {
         return this.trainersService.findOne(+id);

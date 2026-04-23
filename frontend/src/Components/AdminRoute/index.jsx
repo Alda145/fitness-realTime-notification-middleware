@@ -8,7 +8,7 @@ const AdminRoute = ({ children }) => {
         return <div>Loading...</div>;
     }
 
-    const hasAccess = user?.role === "admin";
+    const hasAccess = user?.role === "admin" || user?.role === "manager";
     return hasAccess ? children : <Navigate to="/" />;
 };
 
