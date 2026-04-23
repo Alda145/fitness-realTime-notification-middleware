@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoursesModule } from './courses/courses.module';
@@ -15,6 +15,7 @@ import { UserEntity } from './user/Entity/User.Entity';
 import { AuthModule } from './auth/auth.module';
 import { HighlightsModule } from './highlights/highlights.module';
 import { HighlightsEntity } from './highlights/Entity/Highlights.Entity';
+import { AuthMiddleware } from './Middleware/Auth.middleware';
 
 
 
@@ -38,10 +39,29 @@ import { HighlightsEntity } from './highlights/Entity/Highlights.Entity';
     BlockedSlotModule,
     UserModule,
     AuthModule,
-    HighlightsModule,
     HighlightsModule
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(AuthMiddleware)
+      .forRoutes(
+        { path: 'trainers', method: RequestMethod.POST },
+        { path: 'trainers/:id', method: RequestMethod.PATCH },
+        { path: 'trainers/:id', method: RequestMethod.DELETE },
+
+        { path: 'courses', method: RequestMethod.POST },
+        { path: 'courses/:id', method: RequestMethod.PATCH },
+        { path: 'courses/:id', method: RequestMethod.DELETE },
+
+        { path: 'blocked-slot', method: RequestMethod.POST },
+        { path: 'blocked-slot/:id', method: RequestMethod.PATCH },
+        { path: 'blocked-slot/:id', method: RequestMethod.DELETE },
+      
+        { path: 'appointment/book-appointment', method: RequestMethod.POST },
+        { path: 'appointment/:id', method: RequestMethod.DELETE });
+  }
+}

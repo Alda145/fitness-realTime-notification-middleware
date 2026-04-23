@@ -11,7 +11,7 @@ import {
 import { BlockedSlotService } from './blocked-slot.service';
 import { BlockedSlotDto } from './DTO/BlockedSlot.dto';
 import { BlockedSlotEntity } from './Entity/BlockedSlot.entity';
-import { AuthGuard } from 'src/guards/auth.Guards';
+import { AdminGuard } from '../guards/admin.guards';
 
 
 @Controller('blocked-slot')
@@ -19,7 +19,7 @@ export class BlockedSlotController {
     constructor(private readonly blockedSlotService: BlockedSlotService) { }
 
     // CREATE
-    // @UseGuards(AuthGuard)
+    @UseGuards(AdminGuard)
     @Post()
     create(@Body() dto: BlockedSlotDto): Promise<BlockedSlotEntity> {
         return this.blockedSlotService.create(dto);
@@ -32,20 +32,21 @@ export class BlockedSlotController {
     }
 
     // GET ONE
+    @UseGuards(AdminGuard)
     @Get(':id')
     findOne(@Param('id') id: string): Promise<BlockedSlotEntity> {
         return this.blockedSlotService.findOne(+id);
     }
 
     // UPDATE (pa DTO)
-    @UseGuards(AuthGuard)
+    @UseGuards(AdminGuard)
     @Patch(':id')
     update(@Param('id') id: string, @Body() body: any) {
         return this.blockedSlotService.update(+id, body);
     }
 
     // DELETE
-    @UseGuards(AuthGuard)
+    @UseGuards(AdminGuard)
     @Delete(':id')
     remove(@Param('id') id: string) {
         return this.blockedSlotService.remove(+id);

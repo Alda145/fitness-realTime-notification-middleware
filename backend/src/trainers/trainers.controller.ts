@@ -15,14 +15,14 @@ import { TrainersDto } from './DTO/Trainers.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
-import { AuthGuard } from 'src/guards/auth.Guards';
+import { AdminGuard } from '../guards/admin.guards';
 
 
 @Controller('trainers')
 export class TrainersController {
     constructor(private readonly trainersService: TrainersService) { }
 
-    @UseGuards(AuthGuard)
+    @UseGuards(AdminGuard)
     @Post()
     @UseInterceptors(
         FileInterceptor('image', {
@@ -50,12 +50,14 @@ export class TrainersController {
         return this.trainersService.findAll();
     }
 
+
+    @UseGuards(AdminGuard)
     @Get(':id')
     findOne(@Param('id') id: string) {
         return this.trainersService.findOne(+id);
     }
 
-    @UseGuards(AuthGuard)
+    @UseGuards(AdminGuard)
     @Patch(':id')
     @UseInterceptors(
         FileInterceptor('image', {
@@ -76,7 +78,7 @@ export class TrainersController {
         return this.trainersService.update(+id, data, file);
     }
 
-    @UseGuards(AuthGuard)
+    @UseGuards(AdminGuard)
     @Delete(':id')
     remove(@Param('id') id: string) {
         return this.trainersService.remove(+id);

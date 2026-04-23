@@ -3,13 +3,14 @@ import { CreateAppointmentDto } from './DTO/Appointment.dto';
 import { AppointmentService } from './appointment.service';
 import { AppointmentEntity } from './Entity/Appointment.entity';
 import { Get } from '@nestjs/common';
-import { AuthGuard } from 'src/guards/auth.Guards';
+import { AdminGuard } from '../guards/admin.guards';
 
 
 @Controller('appointment')
 export class AppointmentController {
     constructor(private readonly appointmentService: AppointmentService) { }
 
+    
     @Post('book-appointment')
     public async bookAppointment(
         @Body() dto: CreateAppointmentDto,
@@ -26,17 +27,19 @@ export class AppointmentController {
     public async getAppointmentTable(): Promise<AppointmentEntity[]> {
         return this.appointmentService.getAppointmentTable()
     }
-    @UseGuards(AuthGuard)
+    @UseGuards(AdminGuard)
     @Delete(':id')
     public remove(@Param('id') id: string) {
         return this.appointmentService.remove(+id);
     }
+    
+    @UseGuards(AdminGuard)
     @Get(':id')
     findOne(@Param('id') id:string){
         return this.appointmentService.findOne(+id);
 
     }
-    // @UseGuards(AuthGuard)
+    @UseGuards(AdminGuard)
     @Patch(':id')
     updateAppointment(@Param('id') id: string,@Body() dto: CreateAppointmentDto,) {
         return this.appointmentService.updateAppointment(+id, dto);

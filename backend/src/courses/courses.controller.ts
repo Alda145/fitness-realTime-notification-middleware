@@ -15,14 +15,14 @@ import { CoursesDto } from './DTO/Courses.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
-import { AuthGuard } from 'src/guards/auth.Guards';
+import { AdminGuard } from '../guards/admin.guards';
 
 
 @Controller('courses')
 export class CoursesController {
     constructor(private readonly coursesService: CoursesService) { }
 
-    @UseGuards(AuthGuard)
+    @UseGuards(AdminGuard)
     @Post()
     @UseInterceptors(
         FileInterceptor('icon', {
@@ -47,11 +47,12 @@ export class CoursesController {
         return this.coursesService.findAll();
     }
 
+    @UseGuards(AdminGuard)
     @Get(':id')
     findOne(@Param('id') id: string) {
         return this.coursesService.findOne(+id);
     }
-    @UseGuards(AuthGuard)
+    @UseGuards(AdminGuard)
     @Patch(':id')
     @UseInterceptors(
         FileInterceptor('icon', {
@@ -72,7 +73,7 @@ export class CoursesController {
         return this.coursesService.update(+id, data, file);
     }
 
-    @UseGuards(AuthGuard)
+    @UseGuards(AdminGuard)
     @Delete(':id')
     remove(@Param('id') id: string) {
         return this.coursesService.remove(+id);

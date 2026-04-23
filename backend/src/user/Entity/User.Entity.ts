@@ -18,6 +18,6 @@ export class UserEntity {
     @Column()
     password: string;
 
-    @Column({ type: 'enum', enum: ['user', 'admin'], default: 'user' })
+    @Column({ type: 'enum', enum: ['user', 'admin','manager'], default: 'user' })
     role: string;
 }
