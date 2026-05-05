@@ -18,6 +18,8 @@ import { extname } from 'path';
 import { AdminGuard } from '../guards/admin.guards';
 import { RolesGuard } from 'src/guards/roles.guard';
 import { Roles } from 'src/Decorators/AdminRole.decorator';
+import { TransformParamToInt } from 'src/Pipes/transformParamToInt.pipe';
+import { ParseIntPipe } from '@nestjs/common';
 
 
 @Controller('trainers')
@@ -53,12 +55,23 @@ export class TrainersController {
     }
 
 
-    @UseGuards(RolesGuard)
-    @Roles('manager')
+    // @UseGuards(RolesGuard)
+    // @Roles('manager')
+    // @Get(':id')
+    // findOne(@Param('id') id: string) {
+    //     return this.trainersService.findOne(+id);
+    // }
+
     @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.trainersService.findOne(+id);
+    getOne(@Param('id', TransformParamToInt) id: number) {
+        return this.trainersService.findOne(id);
     }
+
+    // @Get(':id')
+    // findOne(@Param('id', ParseIntPipe) id: number) {
+    //     return this.trainersService.findOne(id);
+    // }
+
 
     @UseGuards(AdminGuard)
     @Patch(':id')

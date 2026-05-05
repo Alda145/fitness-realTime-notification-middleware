@@ -1,0 +1,54 @@
+.courseModal .modal-content {
+    border-radius: 14px;
+    overflow: hidden;
+    border: none;
+    background: #ffffff;
+}
+
+.courseModalHeader {
+    background-color: #0e1a3a;
+    color: white;
+    border-bottom: 4px solid #c80036;
+}
+
+.courseModalHeader .btn-close {
+    filter: invert(1);
+}
+
+.courseModalBody {
+    color: #0e1a3a;
+    padding: 25px;
+}
+
+.courseModalBody strong {
+    color: #c80036;
+}
+
+.courseModalFooter {
+    border-top: none;
+    padding: 20px 25px;
+}
+
+.trainerName {
+    color: #0e1a3a;
+}
+
+.trainerRole {
+    color: #c80036;
+    font-size: 14px;
+}
+
+.socialLink {
+    background: #0e1a3a;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 13px;
+}
+
+.socialLink:hover {
+    background: #c80036;
+    color: white;
+}

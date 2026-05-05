@@ -58,6 +58,9 @@
 
 .menu-links .nav-link:hover {
     color: #c80036;
+    background-color: #0e1a3a;
+    transform: skewX(20deg);
+    transition: all 1s ease-in-out;
 }
 
 /* ACTIONS */
@@ -66,6 +69,7 @@
     color: #fff;
     padding: 10px 14px;
     transform: skewX(20deg);
+    cursor: pointer;
 }
 
 .search-box span {
@@ -74,11 +78,20 @@
 }
 
 .quote-btn {
-    background: #c80036;
+    background-color: #c80036;
     border: none;
     transform: skewX(20deg);
     padding: 10px 24px;
     font-weight: 600;
+}
+
+.quote-btn:hover,
+.quote-btn:active {
+    background-color: white !important;
+    color: #c80036 !important;
+    border: 1px solid #c80036;
+
+
 }
 
 /* reset për tekstin */
@@ -155,7 +168,7 @@
 
     /* actions në të djathtë rreshti 1 */
     .nav-bg .ms-auto {
-         flex: 0 0 auto;
+        flex: 0 0 auto;
         /*  nuk prekim madhesine */
     }
 
@@ -164,8 +177,9 @@
     /* menu në rreshtin e dytë full width */
     .menu-shape {
         order: 3;
-        flex: 0 0 100%;/*  sillet si një bllok që zë të gjithë gjerësinë e rreshtit dhe nuk ndryshon madhësi */
-        max-width: 100%; 
+        flex: 0 0 100%;
+        /*  sillet si një bllok që zë të gjithë gjerësinë e rreshtit dhe nuk ndryshon madhësi */
+        max-width: 100%;
         margin: 12px 0 0 0;
         padding: 12px 20px;
     }
@@ -175,6 +189,7 @@
         justify-content: center;
     }
 }
+
 .nav-bg {
     position: relative;
     z-index: 10;
@@ -183,6 +198,7 @@
 .nav-item-link.active {
     color: #c80036;
 }
+
 .dropdown-item:focus,
 .dropdown-item.active {
     color: white !important;
@@ -263,5 +279,74 @@
     background: #fff7e8;
     color: #7b8794;
     font-size: 22px;
+    cursor: pointer;
+}
+
+.language-switcher {
+
+    .btn-outline-danger {
+        --bs-btn-border-color: none;
+        --bs-btn-hover-bg: none;
+        --bs-btn-hover-border-color: none;
+    }
+
+}
+
+/* Css per iconen x */
+.search-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.search-input-wrapper .search-overlay-input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.clear-search-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #777;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 10;
+}
+
+.clear-search-btn:hover {
+    color: #c80036;
+}
+
+/* Mesazhi i rezultateve   */
+.search-overlay-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* kjo e çon poshtë */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.search-overlay-form {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    align-items: stretch;
+    background: #fff;
+}
+
+.search-result-message {
+    margin-top: 18px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.search-result-message {
     cursor: pointer;
 }

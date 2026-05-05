@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { TrainerEntity } from 'src/trainers/Entity/Trainer.Entity';
-
+import { UserEntity } from '../../user/Entity/User.Entity';
 
 @Entity('courses')
 export class CourseEntity {
@@ -26,4 +26,8 @@ export class CourseEntity {
     @ManyToOne(() => TrainerEntity, (trainer) => trainer.courses)
     @JoinColumn({ name: 'trainer_id' })
     trainer: TrainerEntity;
+
+    @ManyToOne(() => UserEntity, (users) => users.courses)
+    @JoinColumn({ name: 'user_id' })
+    users: UserEntity;
 }

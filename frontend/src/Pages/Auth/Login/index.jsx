@@ -32,7 +32,7 @@ export default function Login({ show, handleClose, handleShowRegister }) {
                     password: ""
                 }); // pastron input-et
                 handleClose();
-                if (result.data?.role === "admin") {
+                if (result.data?.role === "admin" || result.data?.role === "manager") {
                     console.log("A kemi admin:", result.data?.role)
                     navigate("/admin");
                 }

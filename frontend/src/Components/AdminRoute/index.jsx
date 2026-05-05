@@ -8,6 +8,10 @@ const AdminRoute = ({ children }) => {
         return <div>Loading...</div>;
     }
 
+
+    console.log("user:", user);
+    console.log("user.role:", user?.role);
+  
     const hasAccess = user?.role === "admin" || user?.role === "manager";
     return hasAccess ? children : <Navigate to="/" />;
 };

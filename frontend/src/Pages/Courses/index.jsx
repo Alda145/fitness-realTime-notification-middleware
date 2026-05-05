@@ -4,7 +4,6 @@ import Testimonials from "../../Components/Home/Testimonial";
 import BreadcrumbSection from "../../Components/BreadcrumbSection";
 import { useTranslation } from "react-i18next";
 
-
 const Courses = () => {
     const { t } = useTranslation();
     return <>

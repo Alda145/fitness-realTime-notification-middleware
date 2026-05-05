@@ -26,10 +26,6 @@ import EditBlockedSlot from './Admin/BlockedSlot/EditBlokSlot'
 import AdminRoute from './Components/AdminRoute';
 import SearchResults from "./Pages/SearchResults";
 
-
-
-//import './App.css'
-
 function App() {
   const location = useLocation()
   const isAdminRoute = location.pathname.startsWith('/admin')
@@ -37,36 +33,36 @@ function App() {
   return (
     <>
       {!isAdminRoute && <MainNavbar />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/search-results" element={<SearchResults />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/features" element={<Features />} />
-        <Route path="/testimonial" element={<Testimonial />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/admin"
-        element={
-            <AdminRoute>
-              <Admin />
-            </AdminRoute>
-          }
-        >
-          <Route index element={<Dashboard />} />
-          <Route path="trainers" element={<Trainers />} />
-          <Route path="trainers/create/" element={<CreateTrainer />} />
-          <Route path="trainers/edit/:id" element={<EditTrainer />} />
-          <Route path="courses" element={<CoursesAdmin />} />
-          <Route path="courses/create" element={<CreateCourse />} />
-          <Route path="courses/edit/:id" element={<EditCourse />} />
-          <Route path="appointments" element={<Appointments />} />
-          <Route path="blocked-slots" element={<BlockedSlotPage />} />
-          <Route path="blocked-slots/create" element={<CreateBlockedSlot />} />
-          <Route path="blocked-slots/edit/:id" element={<EditBlockedSlot />} />
-        </Route>
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/search-results" element={<SearchResults />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/testimonial" element={<Testimonial />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/admin"
+            element={
+              <AdminRoute>
+                <Admin />
+              </AdminRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path="trainers" element={<Trainers />} />
+            <Route path="trainers/create/" element={<CreateTrainer />} />
+            <Route path="trainers/edit/:id" element={<EditTrainer />} />
+            <Route path="courses" element={<CoursesAdmin />} />
+            <Route path="courses/create" element={<CreateCourse />} />
+            <Route path="courses/edit/:id" element={<EditCourse />} />
+            <Route path="appointments" element={<Appointments />} />
+            <Route path="blocked-slots" element={<BlockedSlotPage />} />
+            <Route path="blocked-slots/create" element={<CreateBlockedSlot />} />
+            <Route path="blocked-slots/edit/:id" element={<EditBlockedSlot />} />
+          </Route>
+        </Routes>
       {!isAdminRoute && <Footer />}
 
 

@@ -2,13 +2,14 @@ import { useState } from "react";
 import i18n from '../i18n';
 import { Container, Nav, Button, NavDropdown } from "react-bootstrap";
 import { FaEnvelope, FaClock, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaBars } from "react-icons/fa6";
-import { FaHandRock, FaSearch } from "react-icons/fa";
+import { FaHandRock, FaSearch, FaTimes } from "react-icons/fa";
 
 import { NavLink, useNavigate } from "react-router-dom";
 import Register from '../Pages/Auth/Register';
 import Login from '../Pages/Auth/Login';
 import { useUserContext } from "../Context/User";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
 import "./index.css";
 
 export default function Header() {
@@ -22,6 +23,7 @@ export default function Header() {
     const [showRegister, setShowRegister] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
+    const [resultsCount, setResultsCount] = useState(0);
 
     const handleShowLogin = () => setShowLogin(true);
     const handleCloseLogin = () => setShowLogin(false);
@@ -30,20 +32,64 @@ export default function Header() {
     const handleCloseRegister = () => setShowRegister(false);
 
 
+
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
     }
-    const handleChange = (e) => {
-        console.log ("event is :", e)
+    const handleChange = async (e) => {
+        console.log("event is :", e)
         console.log("event.target is :", e.target)
         const value = e.target.value;
-        console.log("value is :", value )
+        console.log("value is :", value)
         setSearchTerm(value);
+        if (!value.trim()) {
+            setResultsCount(0);
+            return;
+        }
+        try {
+            const coursesRes = await axios.get("http://localhost:3000/courses");
+            const trainersRes = await axios.get("http://localhost:3000/trainers");
+            console.log("courses are :", coursesRes)
+            console.log("trainers are :", trainersRes)
+            const courses = coursesRes.data;
+            const trainers = trainersRes.data;
+
+            const searchValue = value.toLowerCase();
+
+            const filteredCourses = courses.filter((course) => {
+                const text = `
+                ${course.title || ""}
+                ${course.description || ""}
+                ${course.category || ""}
+                ${course.level || ""}
+                ${course.trainer?.name || ""}
+            `.toLowerCase();
+                const filtercourse = text.includes(searchValue)
+                return filtercourse;
+            });
+            console.log("filtered courses: ", filteredCourses)
+
+            const filteredTrainers = trainers.filter((trainer) => {
+                const text = `
+                ${trainer.name || ""}
+                ${trainer.email || ""}
+                ${trainer.phone || ""}
+                ${trainer.speciality || ""}
+                ${trainer.description || ""}
+            `.toLowerCase();
+                const filtertrainer = text.includes(searchValue)
+                return filtertrainer;
+            });
+            console.log("filteredTrainers: ", filteredTrainers)
+            setResultsCount(filteredCourses.length + filteredTrainers.length);
+        } catch (err) {
+            console.error("Search error:", err);
+        }
     };
     const handleSearch = () => {
         if (!searchTerm.trim()) return;
 
-         setShowSearch(false);
+        setShowSearch(false);
         const value = searchTerm.trim();
         navigate(`/search-results?q=${value}`);
     };
@@ -89,9 +135,11 @@ export default function Header() {
                         <FaInstagram />
                         <FaLinkedinIn />
                         <div className="language-switcher">
-                         <Button variant="outline-danger"  onClick={() => changeLanguage('it')}>it</Button>
-                        <Button variant="outline-danger"  onClick={() => changeLanguage('en')}>en</Button>
-                        <Button variant="outline-danger" onClick={() => changeLanguage('es')}>es</Button> 
+                            <Button variant="outline-danger" onClick={() => changeLanguage('it')}>it</Button>
+                            <span>\</span>
+                            <Button variant="outline-danger" onClick={() => changeLanguage('en')}>en</Button>
+                            <span>\</span>
+                            <Button variant="outline-danger" onClick={() => changeLanguage('es')}>es</Button>
                         </div>
                     </div>
 
@@ -185,7 +233,7 @@ export default function Header() {
                     </div>
 
                     <Button className="quote-btn w-100 mt-3">
-                        Get Quote
+                        <span>{t("common.price")}</span>
                     </Button>
                 </div>
             </div>
@@ -203,19 +251,49 @@ export default function Header() {
 
                     <div className="search-overlay-body">
                         <div className="search-overlay-form">
-                            <input
-                                type="text"
-                                name = "search"
-                                placeholder="keywords"
-                                className="search-overlay-input"
-                                value={searchTerm}
-                                onChange={handleChange}
-                            />
+                            <div className="search-input-wrapper">
+                                <input
+                                    type="text"
+                                    name="search"
+                                    placeholder="keywords"
+                                    className="search-overlay-input"
+                                    value={searchTerm}
+                                    onChange={handleChange}
+                                />
+
+                                {searchTerm && (
+                                    <button
+                                        type="button"
+                                        className="clear-search-btn"
+                                        onClick={() => setSearchTerm("")}
+                                    >
+                                        <FaTimes />
+                                    </button>
+                                )}
+
+                            </div>
+
                             <button className="search-overlay-btn" onClick={handleSearch}>
                                 <FaSearch />
                             </button>
+
                         </div>
+                        {searchTerm && (
+                            <p className="search-result-message"
+
+                                onClick={() => {
+                                    if (!searchTerm.trim()) return;
+                                    navigate(`/search-results?q=${searchTerm}`);
+                                    setShowSearch(false);
+                                }}>
+                                {resultsCount > 0
+                                    ? `U gjetën ${resultsCount} rezultate`
+                                    : "Nuk u gjet asnjë rezultat"}
+                            </p>
+                        )}
+
                     </div>
+
                 </div>
             )}
         </>

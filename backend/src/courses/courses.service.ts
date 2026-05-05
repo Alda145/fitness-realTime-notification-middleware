@@ -86,4 +86,8 @@ export class CoursesService {
         await this.courseRepository.delete(id);
         return { message: 'Course deleted successfully' };
     }
+
+    public async registerToCourse(data: any): Promise<any> {
+        const { user_id, course_id } = data;
+    }
 }

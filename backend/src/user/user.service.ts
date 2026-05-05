@@ -1,13 +1,17 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './Entity/User.Entity';
+import { CoursesService } from '../courses/courses.service';
 import { Repository } from 'typeorm';
 import { ErrorHandler } from '../ErrorHandler/ErrorHandler';
 import { UserDto } from './DTO/User.dto';
 
 @Injectable()
 export class UserService {
-    constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) { }
+    constructor(
+        @InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>,
+        private readonly courseService: CoursesService
+    ) { }
 
     public async findByEmail(email: string): Promise<UserEntity | null> {
         try {
@@ -33,8 +37,12 @@ export class UserService {
             throw new ErrorHandler(error.message, HttpStatus.NOT_FOUND)
         }
     }
-    
+
     public findOne(id: number) {
         return this.userRepository.findOne({ where: { id } });
+    }
+
+    public async registerToCourse(data: any): Promise<any> {
+        return this.courseService.registerToCourse(data);
     }
 }

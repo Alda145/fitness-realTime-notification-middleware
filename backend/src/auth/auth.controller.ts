@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Res, Get, Req } from '@nestjs/common';
+import { Controller, Post, Body, Res, Get, Req,Header,Redirect } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UserService } from 'src/user/user.service';
 import { UserDto } from 'src/user/DTO/User.dto';
@@ -18,6 +18,8 @@ export class AuthController {
     }
 
     @Post('login')
+   // @Redirect('https://nestjs.com', 301)
+   // @Header('Cache-Control', 'no-store')
     public async login(@Body() bodyParam: LoginDto, @Res({ passthrough: true }) response: Response) {
         const { user, token } = await this.authService.loginUser(bodyParam);
         response.cookie('jwt', token, { httpOnly: true });
@@ -26,6 +28,8 @@ export class AuthController {
 
     @Post('logout')
     public logout(@Res({ passthrough: true }) response: Response) {
+        console.log("response",response)
+        console.log("response", response.cookie)
         response.clearCookie('jwt');
         return { "message": "success ", "status": 201 }
     }

@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from "typeorm";
+import { CourseEntity } from "../../courses/Entity/Course.Entity";
 
 @Entity('user')
 export class UserEntity {
@@ -18,6 +19,9 @@ export class UserEntity {
     @Column()
     password: string;
 
-    @Column({ type: 'enum', enum: ['user', 'admin','manager'], default: 'user' })
+    @Column({ type: 'enum', enum: ['user', 'admin', 'manager'], default: 'user' })
     role: string;
+
+    @OneToMany(() => CourseEntity, (courses) => courses.users)
+    courses: CourseEntity[]
 }
