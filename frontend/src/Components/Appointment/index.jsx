@@ -86,8 +86,6 @@ export default function AppointmentModal({ show, handleClose }) {
 
     useEffect(() => {
         const updateView = () => {
-            console.log("window object:", window)
-            console.log("window.innerWidth eshte :", window.innerWidth)
             if (window.innerWidth < 768) {
                 setCalendarView("timeGridDay");
             } else {

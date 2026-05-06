@@ -12,13 +12,13 @@ const logout_user = async (data) => {
     const result = await axios.post(`${AUTH}/logout`)
     return result;
 }
-const checkAuth_user_service = async (data) => {
+const checkAuth_user_service = async () => {
     const result = await axios.get(`${AUTH}/checkUser`)
     return result;
 }
 
-const register_to_courses_user_service = async (data) => {
-    const result = await axios.get(`${USER}/register-course/`)
+const register_to_courses_user_service = async (user_id, course_id) => {
+    const result = await axios.post(`${USER}/register-course/`, { user_id, course_id })
     return result;
 }
 export { register_user, login_user, logout_user, checkAuth_user_service, register_to_courses_user_service }

@@ -5,22 +5,30 @@ import "./modal.css";
 const ModalCourses = ({ show, handleClose, singleCourse }) => {
 
     const { user, registerToCourse } = useUserContext();
-
-    console.log("singleCourse---", singleCourse);
-
+    const [enrollment, setEnrollment] = useState({});
 
     const handleRegisterToCourses = async () => {
         try {
             const result = await registerToCourse(user.id, singleCourse.id);
-            console.log("result----", result);
+            console.log(result)
+            if (result.status === 200) {
+                setEnrollment({ message: result.message, status: result.status });
+            }
+            return
         } catch (error) {
-
+            console.log(error);
+            setEnrollment({ message: error.message, status: error.statusCode });
         }
+    }
+
+    const closeModal = () => {
+        setEnrollment({ message: "", status:"" });
+        handleClose();
     }
 
     return (
         <>
-            <Modal show={show} onHide={handleClose} animation={false}>
+            <Modal show={show} onHide={closeModal} animation={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>{singleCourse.title}</Modal.Title>
                 </Modal.Header>
@@ -33,6 +41,8 @@ const ModalCourses = ({ show, handleClose, singleCourse }) => {
                     <div className="mb-4">
                         <p><strong>Day:</strong> {singleCourse?.day}</p>
                         <p><strong>Time:</strong> {singleCourse?.time}</p>
+
+                        {enrollment.status === 500 ? <p>{enrollment.message}</p> : ""}
                     </div>
 
                     {/* TRAINER */}
@@ -77,12 +87,12 @@ const ModalCourses = ({ show, handleClose, singleCourse }) => {
                 </Modal.Body>
 
                 <Modal.Footer className="courseModalFooter d-flex justify-content-between align-items-center">
-                    {user?.id && (
-                        <Button className="readMore border-0" onClick={handleRegisterToCourses}>
-                            <span>Register to class</span>
-                        </Button>
-                    )}
-                    <Button className="readMore border-0" onClick={handleClose}>
+                    {/* {user?.id && ( */}
+                    <Button className="readMore border-0" onClick={handleRegisterToCourses}>
+                        <span>Register to class</span>
+                    </Button>
+                    {/* )} */}
+                    <Button className="readMore border-0" onClick={closeModal}>
                         <span>Close</span>
                     </Button>
 

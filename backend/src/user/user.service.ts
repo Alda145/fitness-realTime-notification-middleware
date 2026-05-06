@@ -43,6 +43,10 @@ export class UserService {
     }
 
     public async registerToCourse(data: any): Promise<any> {
-        return this.courseService.registerToCourse(data);
+        return await this.courseService.registerToCourse(data);
+    }
+
+    public async getAllUserEnrollment(id: number): Promise<any> {
+        return await this.courseService.getAllUserEnrollment(id);
     }
 }

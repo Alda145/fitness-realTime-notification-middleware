@@ -37,7 +37,6 @@ export default function Login({ show, handleClose, handleShowRegister }) {
                     navigate("/admin");
                 }
             }
-            console.log("values---", result);
         } catch (error) {
             console.log("error---", error);
         }

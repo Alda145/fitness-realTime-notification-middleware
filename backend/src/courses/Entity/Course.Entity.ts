@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { TrainerEntity } from 'src/trainers/Entity/Trainer.Entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, ManyToMany, OneToMany, } from 'typeorm';
+import { TrainerEntity } from '../../trainers/Entity/Trainer.Entity';
 import { UserEntity } from '../../user/Entity/User.Entity';
+import { CourseEnrollmentEntity } from './CourseEnrollmentEntity';
 
 @Entity('courses')
 export class CourseEntity {
@@ -27,7 +28,8 @@ export class CourseEntity {
     @JoinColumn({ name: 'trainer_id' })
     trainer: TrainerEntity;
 
-    @ManyToOne(() => UserEntity, (users) => users.courses)
-    @JoinColumn({ name: 'user_id' })
-    users: UserEntity;
+    // @ManyToMany(() => UserEntity, (user) => user.courses)
+    // users: UserEntity[];
+    @OneToMany(() => CourseEnrollmentEntity, (enrollment) => enrollment.course)
+    enrollments: CourseEnrollmentEntity[];
 }

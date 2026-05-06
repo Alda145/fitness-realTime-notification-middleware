@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { register_user, login_user, logout_user, checkAuth_user_service, register_to_courses_user_service } from '../Services/user'
 
-
 const UserContext = createContext({});
 const UserProvider = (props) => {
     const [user, setUser] = useState({})
@@ -28,7 +27,8 @@ const UserProvider = (props) => {
         try {
             const result = await login_user(data);
             if (result.status === 201) {
-                setUser(result.data)
+                setUser(result.data);
+                setTrigger(true);
                 return result;
             }
         } catch (error) {
@@ -60,15 +60,14 @@ const UserProvider = (props) => {
         } catch (error) {
             setUser({});
             return error;
-
         } finally {
             setIsAuthChecked(true);
         }
     }
 
-    const registerToCourse = async (data) => {
+    const registerToCourse = async (user_id, course_id) => {
         try {
-            const result = await register_to_courses_user_service(data);
+            const result = await register_to_courses_user_service(user_id, course_id);
             if (result.status === 201) {
                 return result;
             }
@@ -78,7 +77,7 @@ const UserProvider = (props) => {
         }
     }
 
-    const values = { register, login, logout, user, isAuthChecked, checkAuthUser }
+    const values = { register, login, logout, user, isAuthChecked, checkAuthUser, registerToCourse }
     return (
         <UserContext.Provider value={values}>
             {props.children}

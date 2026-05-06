@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { UserService } from './user.service';
 @Controller('user')
 export class UserController {
@@ -6,6 +6,11 @@ export class UserController {
 
     @Post('register-course')
     public async registerToCourse(@Body() bodyParam: any): Promise<any> {
-        return await this.userService.registerUser
+        return await this.userService.registerToCourse(bodyParam);
+    }
+
+    @Get('all-enrollment:id')
+    public async getAllUserEnrollment(@Param() id: number): Promise<any> {
+        return await this.userService.getAllUserEnrollment(id);
     }
 }

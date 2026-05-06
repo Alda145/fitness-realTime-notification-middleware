@@ -10,6 +10,7 @@ import { CourseEntity } from './courses/Entity/Course.Entity';
 import { TrainerEntity } from './trainers/Entity/Trainer.Entity';
 import { AppointmentEntity } from './appointment/Entity/Appointment.entity';
 import { BlockedSlotEntity } from './blocked-slot/Entity/BlockedSlot.entity';
+import { CourseEnrollmentEntity } from './courses/Entity/CourseEnrollmentEntity';
 import { UserModule } from './user/user.module';
 import { UserEntity } from './user/Entity/User.Entity';
 import { AuthModule } from './auth/auth.module';
@@ -28,7 +29,7 @@ import { AuthMiddleware } from './Middleware/Auth.middleware';
       username: process.env.DB_USER || 'root',
       password: process.env.DB_PASSWORD || '',
       database: process.env.DB_NAME || 'fitness',
-      entities: [CourseEntity, TrainerEntity, AppointmentEntity, BlockedSlotEntity, UserEntity,HighlightsEntity],
+      entities: [CourseEntity, TrainerEntity, AppointmentEntity, BlockedSlotEntity, UserEntity, HighlightsEntity, CourseEnrollmentEntity],
       autoLoadEntities: true,
       synchronize: true,
     }),
@@ -52,7 +53,7 @@ export class AppModule implements NestModule {
         { path: 'trainers', method: RequestMethod.POST },
         { path: 'trainers/:id', method: RequestMethod.PATCH },
         { path: 'trainers/:id', method: RequestMethod.DELETE },
-        {path:'trainers/:id',method:RequestMethod.GET},
+        { path: 'trainers/:id', method: RequestMethod.GET },
 
         { path: 'courses', method: RequestMethod.POST },
         { path: 'courses/:id', method: RequestMethod.PATCH },
@@ -61,7 +62,7 @@ export class AppModule implements NestModule {
         { path: 'blocked-slot', method: RequestMethod.POST },
         { path: 'blocked-slot/:id', method: RequestMethod.PATCH },
         { path: 'blocked-slot/:id', method: RequestMethod.DELETE },
-      
+
         { path: 'appointment/book-appointment', method: RequestMethod.POST },
         { path: 'appointment/:id', method: RequestMethod.DELETE });
   }
