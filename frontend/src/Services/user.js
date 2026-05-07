@@ -21,4 +21,10 @@ const register_to_courses_user_service = async (user_id, course_id) => {
     const result = await axios.post(`${USER}/register-course/`, { user_id, course_id })
     return result;
 }
-export { register_user, login_user, logout_user, checkAuth_user_service, register_to_courses_user_service }
+
+const get_user_enrollments_service = async (user_id) => {
+    const result = await axios.get(`${USER}/all-enrollment/${user_id}`);
+    console.log("result is :", result);
+    return result;
+};
+export { register_user, login_user, logout_user, checkAuth_user_service, register_to_courses_user_service, get_user_enrollments_service }

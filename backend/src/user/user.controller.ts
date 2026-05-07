@@ -9,8 +9,8 @@ export class UserController {
         return await this.userService.registerToCourse(bodyParam);
     }
 
-    @Get('all-enrollment:id')
-    public async getAllUserEnrollment(@Param() id: number): Promise<any> {
+    @Get('all-enrollment/:id')
+    public async getAllUserEnrollment(@Param('id') id: number): Promise<any> {
         return await this.userService.getAllUserEnrollment(id);
     }
 }

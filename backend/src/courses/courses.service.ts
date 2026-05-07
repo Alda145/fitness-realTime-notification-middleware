@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, HttpStatus } from '@nestjs/common';
+import { Injectable, NotFoundException, HttpStatus, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CourseEntity } from './Entity/Course.Entity';
 import { Repository } from 'typeorm';
@@ -126,17 +126,22 @@ export class CoursesService {
 
 
 
-    public async getAllUserEnrollment(user_id: number) {
-
+    public async getAllUserEnrollment(user_id: number): Promise<any> {
         try {
-            const result = await this.courseEnrollmentEntityRepository.findOne({
+            const enrollments = await this.courseEnrollmentEntityRepository.find({
                 where: {
                     user: { id: user_id }
                 },
-                relations: ['course']
+                relations: ['course', 'course.trainer', 'user'],
+                order: {
+                    registeredAt: 'DESC'
+                }
             });
-        } catch (error) {
 
+            return enrollments;
+        } catch (error) {
+            console.log("GET USER ENROLLMENTS ERROR:", error);
+            throw new InternalServerErrorException(error.message);
         }
     }
 }

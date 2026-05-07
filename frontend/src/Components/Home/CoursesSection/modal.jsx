@@ -22,7 +22,7 @@ const ModalCourses = ({ show, handleClose, singleCourse }) => {
     }
 
     const closeModal = () => {
-        setEnrollment({ message: "", status:"" });
+        setEnrollment({ message: "", status: "" });
         handleClose();
     }
 
@@ -42,7 +42,7 @@ const ModalCourses = ({ show, handleClose, singleCourse }) => {
                         <p><strong>Day:</strong> {singleCourse?.day}</p>
                         <p><strong>Time:</strong> {singleCourse?.time}</p>
 
-                        {enrollment.status === 500 ? <p>{enrollment.message}</p> : ""}
+
                     </div>
 
                     {/* TRAINER */}
@@ -82,6 +82,7 @@ const ModalCourses = ({ show, handleClose, singleCourse }) => {
                         {singleCourse?.trainer?.twitter && (
                             <a href={singleCourse.trainer.twitter} target="_blank" className="socialLink">Twitter</a>
                         )}
+                        {enrollment.status === 500 ? <p>{enrollment.message}</p> : ""}
                     </div>
 
                 </Modal.Body>

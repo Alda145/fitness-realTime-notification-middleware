@@ -107,7 +107,10 @@ export default function Header() {
                     <div className="d-flex gap-3 align-items-center top-right flex-wrap">
                         {user?.id ? (
                             <>
-                                <span className="me-2">Welcome, {user.name}</span>
+                                <span className="me-2" onClick={() => navigate("/profile")}
+                                    style={{ cursor: "pointer" }}>
+                                    Welcome, {user.name}
+                                </span>
                                 <span
                                     onClick={logout}
                                     style={{ cursor: "pointer" }}

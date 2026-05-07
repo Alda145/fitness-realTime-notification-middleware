@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { register_user, login_user, logout_user, checkAuth_user_service, register_to_courses_user_service } from '../Services/user'
+import { register_user, login_user, logout_user, checkAuth_user_service, register_to_courses_user_service, get_user_enrollments_service } from '../Services/user'
 
 const UserContext = createContext({});
 const UserProvider = (props) => {
@@ -76,13 +76,23 @@ const UserProvider = (props) => {
             throw error.response.data;
         }
     }
+    const getUserEnrollments = async (user_id) => {
+        try {
+            const result = await get_user_enrollments_service(user_id);
+            return result.data;
+        } catch (error) {
+            console.log("error", error);
+            throw error.response?.data || error;
+        }
+    }
 
-    const values = { register, login, logout, user, isAuthChecked, checkAuthUser, registerToCourse }
+    const values = { register, login, logout, user, isAuthChecked, checkAuthUser, registerToCourse, getUserEnrollments }
     return (
         <UserContext.Provider value={values}>
             {props.children}
         </UserContext.Provider>
     )
+    
 
 }
 const useUserContext = () => { return (useContext(UserContext)) }
