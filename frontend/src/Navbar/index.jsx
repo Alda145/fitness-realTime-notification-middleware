@@ -192,7 +192,9 @@ export default function Header() {
                             <span><FaSearch /></span>
                         </div>
 
-                        <Button className="quote-btn d-none d-md-block">
+                        <Button className="quote-btn d-none d-md-block"
+                            onClick={() => navigate("/pricing")}
+                        >
                             <span>{t("common.price")}</span>
                         </Button>
 

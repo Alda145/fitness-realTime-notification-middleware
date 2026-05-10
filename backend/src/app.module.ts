@@ -17,6 +17,9 @@ import { AuthModule } from './auth/auth.module';
 import { HighlightsModule } from './highlights/highlights.module';
 import { HighlightsEntity } from './highlights/Entity/Highlights.Entity';
 import { AuthMiddleware } from './Middleware/Auth.middleware';
+import { PricingModule } from './pricing/pricing.module';
+import { PricingEntity } from './pricing/Entity/pricing.Entity';
+
 
 
 
@@ -29,7 +32,7 @@ import { AuthMiddleware } from './Middleware/Auth.middleware';
       username: process.env.DB_USER || 'root',
       password: process.env.DB_PASSWORD || '',
       database: process.env.DB_NAME || 'fitness',
-      entities: [CourseEntity, TrainerEntity, AppointmentEntity, BlockedSlotEntity, UserEntity, HighlightsEntity, CourseEnrollmentEntity],
+      entities: [CourseEntity, TrainerEntity, AppointmentEntity, BlockedSlotEntity, UserEntity, HighlightsEntity, CourseEnrollmentEntity,PricingEntity],
       autoLoadEntities: true,
       synchronize: true,
     }),
@@ -40,7 +43,8 @@ import { AuthMiddleware } from './Middleware/Auth.middleware';
     BlockedSlotModule,
     UserModule,
     AuthModule,
-    HighlightsModule
+    HighlightsModule,
+    PricingModule
   ],
   controllers: [],
   providers: [],

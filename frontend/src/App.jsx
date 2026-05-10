@@ -23,7 +23,8 @@ import CreateBlockedSlot from './Admin/BlockedSlot/CreateBlockSlot'
 import EditBlockedSlot from './Admin/BlockedSlot/EditBlokSlot'
 import AdminRoute from './Components/AdminRoute';
 import SearchResults from "./Pages/SearchResults";
-import UserProfile from './Pages/UserProfile'
+import UserProfile from './Pages/UserProfile';
+import Pricing from './Pages/Pricing/Pricing'
 
 function App() {
   const location = useLocation()
@@ -38,6 +39,7 @@ function App() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/search-results" element={<SearchResults />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/features" element={<Features />} />
         <Route path="/testimonial" element={<Testimonial />} />
