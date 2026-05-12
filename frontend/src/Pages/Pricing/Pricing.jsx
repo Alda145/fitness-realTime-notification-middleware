@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { get_pricing_service } from "../../Services/Pricing";
+import axios from "axios";
 import "./pricing.css";
 
 export default function Pricing() {
@@ -12,10 +13,17 @@ export default function Pricing() {
 
     const [selectedExtras, setSelectedExtras] = useState([]);
     const [extraQuantities, setExtraQuantities] = useState({});
+    // State per currency
+    const [currency, setCurrency] = useState("ALL");
+    const [finalPrice, setFinalPrice] = useState(0);
 
+
+    //UseEffekt per marrjen e te gjitha vlerave te tabeles pricing
     useEffect(() => {
         getPricing();
     }, []);
+
+
 
     console.log("pricing List is :", pricingList);
 
@@ -40,18 +48,25 @@ export default function Pricing() {
         (item) => item.type === "extra"
     );
     console.log("extras services :", extraServices)
-    
+
+
+    // Find the element that complete the conditions
     const selectedMembershipData = membershipPrices.find(
         (item) =>
             item.frequency === selectedMembership &&
             item.duration === selectedDuration &&
             item.gender === selectedGender
     );
-
+    console.log("selectedMembershipData is : ", selectedMembershipData);
+    console.log("selectedMembershipData.price", selectedMembershipData?.price);
+    // Find the price in that element
     const membershipPrice = selectedMembership
         ? selectedMembershipData?.price || 0
         : 0;
 
+    console.log("membershipPrice", membershipPrice)
+
+    // Klikimi 2 here te i njejti buton te frquency
     const toggleMembership = (membershipName) => {
         if (selectedMembership === membershipName) {
             setSelectedMembership("");
@@ -59,12 +74,12 @@ export default function Pricing() {
             setSelectedMembership(membershipName);
         }
     };
-
+    //If service exists hiqe ,else shtoje =>Add/Remove 
     const toggleService = (service) => {
         const exists = selectedExtras.find(
             (item) => item.id === service.id
         );
-
+        console.log("exists :", exists);
         if (exists) {
             setSelectedExtras(
                 selectedExtras.filter((item) => item.id !== service.id)
@@ -73,6 +88,7 @@ export default function Pricing() {
             setSelectedExtras([...selectedExtras, service]);
         }
     };
+    console.log("selectedExtras u be :", selectedExtras);
 
     const increaseQuantity = (service) => {
         setExtraQuantities({
@@ -102,6 +118,7 @@ export default function Pricing() {
         (total, service) => total + service.price,
         0
     );
+    console.log("selectedNormalExtrasPrice", selectedNormalExtrasPrice)
 
     const selectedQuantityExtrasPrice = selectedQuantityExtras.reduce(
         (total, service) => {
@@ -110,6 +127,7 @@ export default function Pricing() {
         },
         0
     );
+    console.log("selectedQuantityExtrasPrice", selectedQuantityExtrasPrice);
 
     const totalPrice =
         membershipPrice +
@@ -129,6 +147,74 @@ export default function Pricing() {
         if (membership === "six_days") return "6 Times / Week";
         return "";
     };
+    console.log("getMembershipLabel is:", getMembershipLabel);
+
+
+
+    const changeCurrency = (selectedCurrency) => {
+        setCurrency(selectedCurrency);
+    };
+
+    //UseEffect per vendosjen  e final price = total price ne fillim sapo behet perzgjedhja e nje abonimi
+    useEffect(() => {
+        const convertPrice = async () => {
+            console.log("useEffect u thirr");
+            console.log("currency:", currency);
+            console.log("totalPrice:", totalPrice);
+
+            if (currency === "ALL") {
+                setFinalPrice(totalPrice);
+                return;
+            }
+
+            try {
+                const response = await axios.get(
+                    `https://api.frankfurter.dev/v2/rates?base=ALL&quotes=EUR,GBP`,
+                    {
+                        withCredentials: false,
+                    }
+                );
+
+                console.log("API response:", response.data);
+
+                const eurRate = response.data.find(
+                    (item) => item.quote === "EUR"
+                )?.rate;
+                console.log("eurRate", eurRate)
+
+                const gbpRate = response.data.find(
+                    (item) => item.quote === "GBP"
+                )?.rate;
+                console.log("gbpRate", gbpRate)
+
+                if (currency === "EUR") {
+                    const convertedPrice =
+                        totalPrice * eurRate;
+
+                    setFinalPrice(
+                        convertedPrice.toFixed(2)
+                    );
+                }
+
+                if (currency === "GBP") {
+                    const convertedPrice =
+                        totalPrice * gbpRate;
+
+                    setFinalPrice(
+                        convertedPrice.toFixed(2)
+                    );
+                }
+
+
+            } catch (error) {
+                console.log("Currency error:", error);
+            }
+        };
+
+        convertPrice();
+    }, [currency, totalPrice]);
+
+
 
     return (
         <section className="pricing-page py-5">
@@ -427,14 +513,14 @@ export default function Pricing() {
                             <hr />
 
                             <div className="currency-switch d-flex gap-2 mb-4">
-                                <button type="button" className="active">ALL</button>
-                                <button type="button">EUR</button>
-                                <button type="button">GBP</button>
+                                <button type="button" className={currency === "ALL" ? "active" : ""} onClick={() => changeCurrency("ALL")}>ALL</button>
+                                <button type="button" className={currency === "EUR" ? "active" : ""} onClick={() => changeCurrency("EUR")}>EUR</button>
+                                <button type="button" className={currency === "GBP" ? "active" : ""} onClick={() => changeCurrency("GBP")}>GBP</button>
                             </div>
 
                             <div className="total-box">
                                 <span>Total Price</span>
-                                <h2>{totalPrice} Lek</h2>
+                                <h2>{finalPrice} {currency}</h2>
                             </div>
 
                             <Button className="downloadPricingBtn border-0 w-100 mb-2">
