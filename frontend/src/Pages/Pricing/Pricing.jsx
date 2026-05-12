@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { get_pricing_service } from "../../Services/Pricing";
 import axios from "axios";
+import { jsPDF } from "jspdf";
+import QRCode from 'qrcode'
 import "./pricing.css";
 
 export default function Pricing() {
@@ -214,7 +216,144 @@ export default function Pricing() {
         convertPrice();
     }, [currency, totalPrice]);
 
+    //Kodi per download pdf dhe qr code 
 
+    const downloadPricingPdf = async () => {
+        const doc = new jsPDF();
+
+        let y = 20;
+
+        // HEADER
+        doc.setFillColor(14, 26, 58);
+        doc.rect(0, 0, 210, 30, "F");
+
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(20);
+        doc.text("Fitness Pricing Summary", 105, 18, {
+            align: "center",
+        });
+
+        // reset color
+        doc.setTextColor(0, 0, 0);
+        y = 45;
+
+        // MEMBERSHIP BOX
+        doc.setDrawColor(200, 200, 200);
+        doc.roundedRect(15, y, 180, 45, 3, 3);
+
+        doc.setFontSize(15);
+        doc.setTextColor(200, 0, 54);
+        doc.text("Membership Information", 20, y + 10);
+
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(11);
+
+        doc.text(
+            `Plan: ${getMembershipLabel(selectedMembership) || "Not selected"}`,
+            20,
+            y + 22
+        );
+
+        doc.text(
+            `Duration: ${selectedMembership ? getDurationLabel(selectedDuration) : "Not selected"}`,
+            20,
+            y + 31
+        );
+
+        doc.text(
+            `Gender: ${selectedMembership ? selectedGender : "Not selected"}`,
+            20,
+            y + 40
+        );
+
+        y += 60;
+
+        // EXTRA SERVICES BOX
+        doc.roundedRect(15, y, 180, 55, 3, 3);
+
+        doc.setFontSize(15);
+        doc.setTextColor(200, 0, 54);
+        doc.text("Extra Services", 20, y + 10);
+
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(11);
+
+        let extraY = y + 22;
+
+        if (
+            selectedExtras.length === 0 &&
+            selectedQuantityExtras.length === 0
+        ) {
+            doc.text("No extra services selected", 20, extraY);
+            extraY += 8;
+        }
+
+        selectedExtras.forEach((service) => {
+            doc.text(
+                `• ${service.title} - ${service.price} Lek`,
+                20,
+                extraY
+            );
+            extraY += 8;
+        });
+
+        selectedQuantityExtras.forEach((service) => {
+            const quantity = extraQuantities[service.id] || 0;
+
+            doc.text(
+                `• ${service.title} x ${quantity} - ${service.price * quantity} Lek`,
+                20,
+                extraY
+            );
+            extraY += 8;
+        });
+
+        y += 75;
+
+        // TOTAL BOX
+        doc.setFillColor(248, 248, 248);
+        doc.roundedRect(15, y, 180, 30, 3, 3, "FD");
+
+        doc.setFontSize(14);
+        doc.setTextColor(0, 0, 0);
+        doc.text("Total Price", 20, y + 12);
+
+        doc.setFontSize(18);
+        doc.setTextColor(200, 0, 54);
+        doc.text(`${finalPrice} ${currency}`, 20, y + 24);
+
+        // QR TEXT
+        const qrText = `
+Fitness Pricing Summary
+Plan: ${getMembershipLabel(selectedMembership) || "Not selected"}
+Duration: ${selectedMembership ? getDurationLabel(selectedDuration) : "Not selected"}
+Gender: ${selectedMembership ? selectedGender : "Not selected"}
+Total: ${finalPrice} ${currency}
+`;
+
+        const qrImage = await QRCode.toDataURL(qrText);
+
+        y += 45;
+
+        // QR BOX
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(13);
+        doc.text("Scan QR for summary", 20, y);
+
+        doc.addImage(qrImage, "PNG", 20, y + 8, 45, 45);
+
+        // FOOTER
+        doc.setFontSize(9);
+        doc.setTextColor(120, 120, 120);
+        doc.text(
+            "Generated from Fitness Pricing Page",
+            105,
+            285,
+            { align: "center" }
+        );
+
+        doc.save("pricing-summary.pdf");
+    };
 
     return (
         <section className="pricing-page py-5">
@@ -523,7 +662,7 @@ export default function Pricing() {
                                 <h2>{finalPrice} {currency}</h2>
                             </div>
 
-                            <Button className="downloadPricingBtn border-0 w-100 mb-2">
+                            <Button className="downloadPricingBtn border-0 w-100 mb-2" onClick={() => downloadPricingPdf()}>
                                 Download PDF
                             </Button>
 
