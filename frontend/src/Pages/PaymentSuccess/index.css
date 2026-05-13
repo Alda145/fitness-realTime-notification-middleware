@@ -1,0 +1,77 @@
+.payment-success-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa, #eef1f5);
+    padding: 60px 0;
+}
+
+.success-card {
+    max-width: 560px;
+    background: #fff;
+    padding: 45px 35px;
+    border-radius: 24px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+.success-icon {
+    width: 90px;
+    height: 90px;
+    background: #e9f9ef;
+    color: #198754;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 46px;
+}
+
+.success-card h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #0e1a3a;
+    margin-bottom: 15px;
+}
+
+.success-card p {
+    color: #6c757d;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.success-info {
+    background: #f8f9fa;
+    border-radius: 14px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    color: #0e1a3a;
+}
+
+.success-btn,
+.success-outline-btn {
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.success-btn {
+    background: #c80036;
+    color: #fff;
+}
+
+.success-outline-btn {
+    border: 1px solid #c80036;
+    color: #c80036;
+    background: #fff;
+}
+
+.success-btn:hover {
+    color: #fff;
+    background: #a6002c;
+}
+
+.success-outline-btn:hover {
+    color: #fff;
+    background: #c80036;
+}

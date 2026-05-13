@@ -19,6 +19,7 @@ import { HighlightsEntity } from './highlights/Entity/Highlights.Entity';
 import { AuthMiddleware } from './Middleware/Auth.middleware';
 import { PricingModule } from './pricing/pricing.module';
 import { PricingEntity } from './pricing/Entity/pricing.Entity';
+import { PaymentModule } from './payment/payment.module';
 
 
 
@@ -44,7 +45,8 @@ import { PricingEntity } from './pricing/Entity/pricing.Entity';
     UserModule,
     AuthModule,
     HighlightsModule,
-    PricingModule
+    PricingModule,
+    PaymentModule
   ],
   controllers: [],
   providers: [],

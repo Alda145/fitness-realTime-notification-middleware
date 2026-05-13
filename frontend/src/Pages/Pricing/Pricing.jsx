@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { get_pricing_service } from "../../Services/Pricing";
+import { create_checkout_session_service } from "../../Services/Payment";
 import axios from "axios";
 import { jsPDF } from "jspdf";
 import QRCode from 'qrcode'
@@ -98,6 +99,7 @@ export default function Pricing() {
             [service.id]: (extraQuantities[service.id] || 0) + 1,
         });
     };
+    console.log("setExtraQuantities pas increase :", extraQuantities);
 
     const decreaseQuantity = (service) => {
         if (!extraQuantities[service.id]) {
@@ -109,6 +111,7 @@ export default function Pricing() {
             [service.id]: extraQuantities[service.id] - 1,
         });
     };
+
 
     const selectedQuantityExtras = extraServices.filter(
         (service) =>
@@ -223,136 +226,170 @@ export default function Pricing() {
 
         let y = 20;
 
-        // HEADER
-        doc.setFillColor(14, 26, 58);
-        doc.rect(0, 0, 210, 30, "F");
+        // TITLE
+        doc.setFontSize(18);
+        doc.text("Fitness Pricing Summary", 20, y);
 
-        doc.setTextColor(255, 255, 255);
-        doc.setFontSize(20);
-        doc.text("Fitness Pricing Summary", 105, 18, {
-            align: "center",
-        });
+        y += 15;
 
-        // reset color
-        doc.setTextColor(0, 0, 0);
-        y = 45;
+        // LINE
+        doc.line(20, y, 190, y);
 
-        // MEMBERSHIP BOX
-        doc.setDrawColor(200, 200, 200);
-        doc.roundedRect(15, y, 180, 45, 3, 3);
+        y += 15;
 
-        doc.setFontSize(15);
-        doc.setTextColor(200, 0, 54);
-        doc.text("Membership Information", 20, y + 10);
+        // MEMBERSHIP SECTION
+        doc.setFontSize(14);
+        doc.text("Membership Information", 20, y);
 
-        doc.setTextColor(0, 0, 0);
+        y += 10;
+
         doc.setFontSize(11);
 
         doc.text(
-            `Plan: ${getMembershipLabel(selectedMembership) || "Not selected"}`,
+            `Plan: ${getMembershipLabel(selectedMembership) ||
+            "Not selected"
+            }`,
             20,
-            y + 22
+            y
         );
+
+        y += 8;
 
         doc.text(
-            `Duration: ${selectedMembership ? getDurationLabel(selectedDuration) : "Not selected"}`,
+            `Duration: ${selectedMembership
+                ? getDurationLabel(selectedDuration)
+                : "Not selected"
+            }`,
             20,
-            y + 31
+            y
         );
+
+        y += 8;
 
         doc.text(
-            `Gender: ${selectedMembership ? selectedGender : "Not selected"}`,
+            `Gender: ${selectedMembership
+                ? selectedGender
+                : "Not selected"
+            }`,
             20,
-            y + 40
+            y
         );
 
-        y += 60;
+        y += 15;
 
-        // EXTRA SERVICES BOX
-        doc.roundedRect(15, y, 180, 55, 3, 3);
+        // EXTRA SERVICES
+        doc.setFontSize(14);
+        doc.text("Extra Services", 20, y);
 
-        doc.setFontSize(15);
-        doc.setTextColor(200, 0, 54);
-        doc.text("Extra Services", 20, y + 10);
+        y += 10;
 
-        doc.setTextColor(0, 0, 0);
         doc.setFontSize(11);
-
-        let extraY = y + 22;
 
         if (
             selectedExtras.length === 0 &&
             selectedQuantityExtras.length === 0
         ) {
-            doc.text("No extra services selected", 20, extraY);
-            extraY += 8;
+            doc.text(
+                "No extra services selected",
+                20,
+                y
+            );
+
+            y += 8;
         }
 
-        selectedExtras.forEach((service) => {
+        const array = selectedExtras.forEach((service) => {
             doc.text(
-                `• ${service.title} - ${service.price} Lek`,
+                `• ${service.title} (${service.price} Lek)`,
                 20,
-                extraY
+                y
             );
-            extraY += 8;
+            console.log(service);
+
+            y += 8;
         });
+        console.log("arraayyy extras is :", selectedExtras)
 
         selectedQuantityExtras.forEach((service) => {
-            const quantity = extraQuantities[service.id] || 0;
+            console.log("extraQuantities", extraQuantities)
+            const quantity =
+                extraQuantities[service.id] || 0;
 
             doc.text(
-                `• ${service.title} x ${quantity} - ${service.price * quantity} Lek`,
+                `• ${service.title} x${quantity}`,
                 20,
-                extraY
+                y
             );
-            extraY += 8;
+
+            y += 8;
         });
 
-        y += 75;
+        console.log("array extras with quantity :", selectedQuantityExtras)
 
-        // TOTAL BOX
-        doc.setFillColor(248, 248, 248);
-        doc.roundedRect(15, y, 180, 30, 3, 3, "FD");
+        y += 10;
 
-        doc.setFontSize(14);
-        doc.setTextColor(0, 0, 0);
-        doc.text("Total Price", 20, y + 12);
+        // TOTAL
+        doc.line(20, y, 190, y);
 
-        doc.setFontSize(18);
-        doc.setTextColor(200, 0, 54);
-        doc.text(`${finalPrice} ${currency}`, 20, y + 24);
+        y += 10;
 
-        // QR TEXT
-        const qrText = `
-Fitness Pricing Summary
-Plan: ${getMembershipLabel(selectedMembership) || "Not selected"}
-Duration: ${selectedMembership ? getDurationLabel(selectedDuration) : "Not selected"}
-Gender: ${selectedMembership ? selectedGender : "Not selected"}
-Total: ${finalPrice} ${currency}
-`;
+        doc.setFontSize(15);
 
-        const qrImage = await QRCode.toDataURL(qrText);
-
-        y += 45;
-
-        // QR BOX
-        doc.setTextColor(0, 0, 0);
-        doc.setFontSize(13);
-        doc.text("Scan QR for summary", 20, y);
-
-        doc.addImage(qrImage, "PNG", 20, y + 8, 45, 45);
-
-        // FOOTER
-        doc.setFontSize(9);
-        doc.setTextColor(120, 120, 120);
         doc.text(
-            "Generated from Fitness Pricing Page",
-            105,
-            285,
-            { align: "center" }
+            `Total Price: ${finalPrice} ${currency}`,
+            20,
+            y
         );
 
+        y += 20;
+
+        // QR
+        const qrText = `
+        Membership: ${getMembershipLabel(selectedMembership)}
+        Duration: ${getDurationLabel(selectedDuration)}
+        Gender: ${selectedGender}
+        Total: ${finalPrice} ${currency}
+        `;
+
+        const qrImage =
+            await QRCode.toDataURL(qrText);
+
+        doc.text("QR Summary:", 20, y);
+
+        y += 5;
+
+        doc.addImage(
+            qrImage,
+            "PNG",
+            20,
+            y,
+            40,
+            40
+        );
+
+        // DOWNLOAD
         doc.save("pricing-summary.pdf");
+    };
+
+
+    //Kodi per pay now :
+    const handlePayNow = async () => {
+        console.log("HYRI HANDLE PAY");
+        if (currency === "ALL") {
+            alert("Please choose EUR or GBP before payment");
+            return;
+        }
+        try {
+            const result = await create_checkout_session_service({
+                amount: finalPrice,
+                currency: currency.toLowerCase(),
+            });
+            console.log("RESULT:", result);
+
+            window.location.href = result.data.url;
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -666,7 +703,7 @@ Total: ${finalPrice} ${currency}
                                 Download PDF
                             </Button>
 
-                            <Button className="payPricingBtn border-0 w-100">
+                            <Button className="payPricingBtn border-0 w-100" onClick={handlePayNow}>
                                 Pay Now
                             </Button>
 

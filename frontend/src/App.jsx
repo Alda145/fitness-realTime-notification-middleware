@@ -25,6 +25,7 @@ import AdminRoute from './Components/AdminRoute';
 import SearchResults from "./Pages/SearchResults";
 import UserProfile from './Pages/UserProfile';
 import Pricing from './Pages/Pricing/Pricing'
+import PaymentSuccess from './Pages/PaymentSuccess/PaymentSuccess'
 
 function App() {
   const location = useLocation()
@@ -40,6 +41,8 @@ function App() {
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/search-results" element={<SearchResults />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/payment-success" element={<PaymentSuccess />}
+        />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/features" element={<Features />} />
         <Route path="/testimonial" element={<Testimonial />} />
