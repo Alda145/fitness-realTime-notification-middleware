@@ -24,7 +24,7 @@ export class PricingController {
     public async updatePricing(@Param('id') id:number ,@Body() body:PricingDto):Promise<PricingEntity>{
         return await this.pricingService.updatePricing(id,body)
     }
-    @Delete()
+    @Delete(':id')
     public async removePricing(@Param('id') id:number):Promise<void>{
         return await this.pricingService.removePricing(id)
     }

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { FaHouse, FaUserTie, FaDumbbell, FaCalendarDay, FaClock } from "react-icons/fa6";
+import { FaHouse, FaUserTie, FaDumbbell, FaCalendarDay, FaClock, FaMoneyBillWave } from "react-icons/fa6";
 
 
 export default function Sidebar() {
@@ -31,6 +31,10 @@ export default function Sidebar() {
                 <NavLink to="/admin/blocked-slots" className="sidebar-link">
                     <FaClock />
                     <span>Blocked Slots </span>
+                </NavLink>
+                <NavLink to="/admin/pricing" className="sidebar-link">
+                    <FaMoneyBillWave />
+                    <span>Pricing</span>
                 </NavLink>
             </div>
         </div>

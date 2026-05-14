@@ -10,6 +10,7 @@ import { CourseProvider } from './Context/Course'
 import { AppointmentProvider } from './Context/Appointment.jsx';
 import { BlockedSlotProvider } from "./Context/BlockedSlot";
 import { UserProvider } from './Context/User.jsx';
+import { PricingProvider } from "./Context/Pricing.jsx";
 import './i18n';
 axios.defaults.withCredentials = true
 
@@ -22,7 +23,9 @@ createRoot(document.getElementById('root')).render(
         <CourseProvider>
           <AppointmentProvider>
             <BlockedSlotProvider>
-              <App />
+              <PricingProvider>
+                <App />
+              </PricingProvider>
             </BlockedSlotProvider>
           </AppointmentProvider>
         </CourseProvider>

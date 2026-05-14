@@ -26,6 +26,8 @@ import SearchResults from "./Pages/SearchResults";
 import UserProfile from './Pages/UserProfile';
 import Pricing from './Pages/Pricing/Pricing'
 import PaymentSuccess from './Pages/PaymentSuccess/PaymentSuccess'
+import AdminPricing from './Admin/Pricing';
+import EditPricing from "./Admin/Pricing/EditPricing";
 
 function App() {
   const location = useLocation()
@@ -66,6 +68,8 @@ function App() {
           <Route path="blocked-slots" element={<BlockedSlotPage />} />
           <Route path="blocked-slots/create" element={<CreateBlockedSlot />} />
           <Route path="blocked-slots/edit/:id" element={<EditBlockedSlot />} />
+          <Route path="pricing" element={<AdminPricing />} />
+          <Route path="pricing/edit/:id" element={<EditPricing />} />
         </Route>
       </Routes>
       {!isAdminRoute && <Footer />}
