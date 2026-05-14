@@ -47,13 +47,13 @@ export class CoursesController {
         return this.coursesService.findAll();
     }
 
-    @UseGuards(AdminGuard)
+   // @UseGuards(AdminGuard)
     @Get(':id')
     findOne(@Param('id') id: string) {
         return this.coursesService.findOne(+id);
     }
     
-    @UseGuards(AdminGuard)
+   // @UseGuards(AdminGuard)
     @Patch(':id')
     @UseInterceptors(
         FileInterceptor('icon', {

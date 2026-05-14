@@ -1,0 +1,120 @@
+/*  ---------Trainers --------- */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.page-title {
+    margin: 0 0 6px;
+    font-size: 32px;
+    color: #081a57;
+    font-weight: 700;
+}
+
+.page-subtitle {
+    margin: 0;
+    color: #6b7280;
+    font-size: 16px;
+}
+
+.add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: #081a57;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.add-btn:hover {
+    background: #0d267a;
+    color: white;
+}
+
+.table-card {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(8, 26, 87, 0.08);
+    border: 1px solid #edf1f7;
+    overflow-x: auto;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1000px;
+}
+
+.custom-table th {
+    text-align: left;
+    padding: 14px 12px;
+    font-size: 15px;
+    color: #081a57;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f8fafc;
+}
+
+.custom-table td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #eef2f7;
+    color: #374151;
+    vertical-align: middle;
+}
+
+.table-image {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-btn {
+    text-decoration: none;
+    background: #f3f4f6;
+    color: #081a57;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.edit-btn:hover {
+    background: #e5e7eb;
+    color: #081a57;
+}
+
+.delete-btn {
+    border: none;
+    background: #dc2626;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.delete-btn:hover {
+    background: #b91c1c;
+}
+
+.empty-row {
+    text-align: center;
+    padding: 24px;
+    color: #6b7280;
+}

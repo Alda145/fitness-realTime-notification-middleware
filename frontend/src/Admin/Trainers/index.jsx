@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTrainerContext } from "../../Context/Trainer";
+import './index.css';
 
 export default function Trainers() {
     const { trainers, getTrainers, deleteTrainer } = useTrainerContext();

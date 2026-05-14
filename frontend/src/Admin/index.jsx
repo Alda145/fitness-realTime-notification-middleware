@@ -6,25 +6,18 @@ import "./Components/admin.css";
 export default function Admin() {
     return (
         <div className="admin-layout">
-
-            {/* Sidebar majtas */}
-            <div className="admin-sidebar">
+            <aside className="admin-sidebar">
                 <Sidebar />
-            </div>
+            </aside>
 
-            {/* Pjesa djathtas */}
             <div className="admin-right">
-
-                {/* Topbar sipër */}
-                <div className="admin-topbar">
+                <header className="admin-topbar">
                     <Topbar />
-                </div>
+                </header>
 
-                {/* Këtu ndryshon faqja */}
-                <div className="admin-content">
+                <main className="admin-content">
                     <Outlet />
-                </div>
-
+                </main>
             </div>
         </div>
     );

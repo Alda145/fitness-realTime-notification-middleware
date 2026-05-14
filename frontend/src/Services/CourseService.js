@@ -7,7 +7,9 @@ export async function get_courses_service() {
 }
 
 export async function get_one_course_service(id) {
-    return await axios.get(`${URL}/${id}`);
+    return await axios.get(`${URL}/${id}`, {
+        withCredentials: true,
+    });
 }
 
 export async function create_course_service(data, icon) {
@@ -47,6 +49,7 @@ export async function update_course_service(id, data, icon) {
         headers: {
             "Content-Type": "multipart/form-data",
         },
+        withCredentials: true,
     });
 }
 

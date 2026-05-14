@@ -1,71 +1,161 @@
 import { useEffect } from "react";
-import { FaUserTie, FaDumbbell } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import {
+    FaUserTie,
+    FaDumbbell,
+    FaCalendarDay,
+    FaMoneyBillWave,
+    FaPlus,
+} from "react-icons/fa6";
 import { useTrainerContext } from "../../Context/Trainer";
 import { useCourseContext } from "../../Context/Course";
+import { usePricingContext } from "../../Context/Pricing";
+import './index.css';
 
 export default function Dashboard() {
+    const navigate = useNavigate();
+
     const { trainers, getTrainers } = useTrainerContext();
     const { courses, getCourses } = useCourseContext();
+    const { pricingList, getPricing } = usePricingContext();
 
     useEffect(() => {
         getTrainers();
         getCourses();
+        getPricing();
     }, []);
 
     return (
         <div className="container-fluid p-0">
-            <div className="mb-4">
-                <h2 className="page-title mb-1">Dashboard</h2>
-                <p className="page-subtitle mb-0">
-                    Welcome to your admin panel.
-                </p>
+            <div className="dashboard-hero mb-4">
+                <div>
+                    <span className="dashboard-badge">Admin Overview</span>
+                    <h2 className="dashboard-title mt-3 mb-2">
+                        Welcome back, Admin 👋
+                    </h2>
+                    <p className="dashboard-subtitle mb-0">
+                        Manage trainers, courses, appointments and pricing from one clean dashboard.
+                    </p>
+                </div>
+            </div>
+
+            <div className="row g-4 mb-4">
+                <div className="col-xl-3 col-md-6">
+                    <div className="dashboard-stat-card">
+                        <div className="dashboard-stat-icon">
+                            <FaUserTie />
+                        </div>
+
+                        <div>
+                            <p>Total Trainers</p>
+                            <h3>{trainers.length}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-xl-3 col-md-6">
+                    <div className="dashboard-stat-card">
+                        <div className="dashboard-stat-icon">
+                            <FaDumbbell />
+                        </div>
+
+                        <div>
+                            <p>Total Courses</p>
+                            <h3>{courses.length}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-xl-3 col-md-6">
+                    <div className="dashboard-stat-card">
+                        <div className="dashboard-stat-icon">
+                            <FaCalendarDay />
+                        </div>
+
+                        <div>
+                            <p>Appointments</p>
+                            <h3>0</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-xl-3 col-md-6">
+                    <div className="dashboard-stat-card">
+                        <div className="dashboard-stat-icon">
+                            <FaMoneyBillWave />
+                        </div>
+
+                        <div>
+                            <p>Pricing Plans</p>
+                            <h3>{pricingList.length}</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div className="row g-4">
-                <div className="col-md-6">
-                    <div className="card border-0 shadow-sm rounded-4 h-100">
-                        <div className="card-body p-4 d-flex align-items-center gap-3">
-                            <div
-                                className="d-flex align-items-center justify-content-center rounded-4 text-white"
-                                style={{
-                                    width: "64px",
-                                    height: "64px",
-                                    backgroundColor: "#081a57",
-                                    fontSize: "24px",
-                                    flexShrink: 0,
-                                }}
-                            >
-                                <FaUserTie />
+                <div className="col-lg-7">
+                    <div className="dashboard-panel">
+                        <div className="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h5 className="fw-bold mb-1">Quick Actions</h5>
+                                <p className="text-muted mb-0">
+                                    Shortcuts to manage your admin data faster.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="row g-3">
+                            <div className="col-md-4">
+                                <button
+                                    className="dashboard-action-btn"
+                                    onClick={() => navigate("/admin/trainers/create")}
+                                >
+                                    <FaPlus />
+                                    Add Trainer
+                                </button>
                             </div>
 
-                            <div>
-                                <h6 className="text-muted mb-2 fw-semibold">Total Trainers</h6>
-                                <h3 className="mb-0 fw-bold">{trainers.length}</h3>
+                            <div className="col-md-4">
+                                <button
+                                    className="dashboard-action-btn"
+                                    onClick={() => navigate("/admin/courses/create")}
+                                >
+                                    <FaPlus />
+                                    Add Course
+                                </button>
+                            </div>
+
+                            <div className="col-md-4">
+                                <button
+                                    className="dashboard-action-btn"
+                                    onClick={() => navigate("/admin/pricing")}
+                                >
+                                    <FaPlus />
+                                    Add Pricing
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="col-md-6">
-                    <div className="card border-0 shadow-sm rounded-4 h-100">
-                        <div className="card-body p-4 d-flex align-items-center gap-3">
-                            <div
-                                className="d-flex align-items-center justify-content-center rounded-4 text-white"
-                                style={{
-                                    width: "64px",
-                                    height: "64px",
-                                    backgroundColor: "#081a57",
-                                    fontSize: "24px",
-                                    flexShrink: 0,
-                                }}
-                            >
-                                <FaDumbbell />
-                            </div>
+                <div className="col-lg-5">
+                    <div className="dashboard-panel h-100">
+                        <h5 className="fw-bold mb-3">Admin Summary</h5>
 
-                            <div>
-                                <h6 className="text-muted mb-2 fw-semibold">Total Courses</h6>
-                                <h3 className="mb-0 fw-bold">{courses.length}</h3>
-                            </div>
+                        <div className="dashboard-summary-item">
+                            <span>Trainers available</span>
+                            <strong>{trainers.length}</strong>
+                        </div>
+
+                        <div className="dashboard-summary-item">
+                            <span>Courses published</span>
+                            <strong>{courses.length}</strong>
+                        </div>
+
+                        <div className="dashboard-summary-item">
+                            <span>Pricing options</span>
+                            <strong>{pricingList.length}</strong>
                         </div>
                     </div>
                 </div>

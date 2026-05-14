@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCourseContext } from "../../Context/Course";
+import './index.css';
 
 export default function Courses() {
     const { courses, getCourses, deleteCourse } = useCourseContext();

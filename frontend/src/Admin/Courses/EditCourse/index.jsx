@@ -26,7 +26,7 @@ export default function EditCourse() {
                 await getTrainers();
 
                 const result = await getOneCourse(id);
-
+                console.log("COURSE RESULT:", result);
                 if (result) {
                     setValue({
                         title: result.title || "",
