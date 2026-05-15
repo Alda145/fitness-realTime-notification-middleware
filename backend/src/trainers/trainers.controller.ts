@@ -50,8 +50,8 @@ export class TrainersController {
     }
 
     @Get()
-    findAll() {
-        return this.trainersService.findAll();
+    public async findAll() {
+        return await this.trainersService.findAll();
     }
 
 
@@ -63,12 +63,12 @@ export class TrainersController {
     // }
 
     @Get(':id')
-    getOne(@Param('id', TransformParamToInt) id: number) {
-        return this.trainersService.findOne(id);
+    public async getOne(@Param('id', TransformParamToInt) id: number) {
+        return await this.trainersService.findOne(id);
     }
 
     // @Get(':id')
-    // findOne(@Param('id', ParseIntPipe) id: number) {
+    // public async findOne(@Param('id') id: number) {
     //     return this.trainersService.findOne(id);
     // }
 
@@ -86,17 +86,17 @@ export class TrainersController {
             }),
         }),
     )
-    update(
+    public async update(
         @Param('id') id: string,
         @UploadedFile() file: Express.Multer.File,
         @Body() data: TrainersDto,
     ) {
-        return this.trainersService.update(+id, data, file);
+        return await this.trainersService.update(+id, data, file);
     }
 
     @UseGuards(AdminGuard)
     @Delete(':id')
-    remove(@Param('id') id: string) {
-        return this.trainersService.remove(+id);
+    public async remove(@Param('id') id: string) {
+        return await this.trainersService.remove(+id);
     }
 }

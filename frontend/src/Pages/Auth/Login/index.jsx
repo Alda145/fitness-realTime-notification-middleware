@@ -24,6 +24,7 @@ export default function Login({ show, handleClose, handleShowRegister }) {
         event.preventDefault()
         try {
             const result = await login(values);
+            console.log("login user :", result.data )
             if (result.status === 201) {
                 setValues({
                     name: "",

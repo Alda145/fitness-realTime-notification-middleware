@@ -20,78 +20,139 @@ export class CoursesService {
         private courseEnrollmentEntityRepository: Repository<CourseEnrollmentEntity>
     ) { }
 
-    async create(data: CoursesDto, file: Express.Multer.File) {
-        console.log("DATA CREATE COURSE:", data);
-        console.log("TRAINER ID:", data.trainer_id);
-        const trainer = await this.trainerRepository.findOneBy({
-            id: +data.trainer_id,
-        });
 
-        if (!trainer) {
-            throw new NotFoundException('Trainer not found');
+ public   async create(data: CoursesDto, file: Express.Multer.File) {
+        try {
+            const trainer = await this.trainerRepository.findOneBy({
+                id: +data.trainer_id,
+            });
+
+            if (!trainer) {
+                throw new ErrorHandler('Trainer not found', HttpStatus.NOT_FOUND);
+            }
+
+            const newCourse = this.courseRepository.create({
+                title: data.title,
+                description: data.description,
+                day: data.day,
+                time: data.time,
+                icon: file ? `/uploads/courses/${file.filename}` : '',
+                trainer: trainer,
+            });
+
+            return await this.courseRepository.save(newCourse);
+
+        } catch (error) {
+            if (error instanceof ErrorHandler) {
+                throw error;
+            }
+
+            throw new ErrorHandler(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        const newCourse = this.courseRepository.create({
-            title: data.title,
-            description: data.description,
-            day: data.day,
-            time: data.time,
-            icon: file ? `/uploads/courses/${file.filename}` : '',
-            trainer: trainer,
-        });
-
-        return this.courseRepository.save(newCourse);
     }
 
-    findAll() {
-        return this.courseRepository.find({
-            relations: ['trainer'],
-        });
+
+  public  async findAll() {
+        try {
+            return await this.courseRepository.find({
+                relations: ['trainer'],
+            });
+
+        } catch (error) {
+            throw new ErrorHandler(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    findOne(id: number) {
-        return this.courseRepository.findOne({
-            where: { id },
-            relations: ['trainer'],
-        });
+
+  public  async findOne(id: number) {
+        try {
+            const course = await this.courseRepository.findOne({
+                where: { id },
+                relations: ['trainer'],
+            });
+
+            if (!course) {
+                throw new ErrorHandler('Course not found', HttpStatus.NOT_FOUND);
+            }
+
+            return course;
+
+        } catch (error) {
+            if (error instanceof ErrorHandler) {
+                throw error;
+            }
+
+            throw new ErrorHandler(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    async update(id: number, data: CoursesDto, file?: Express.Multer.File) {
-        const course = await this.courseRepository.findOne({
-            where: { id },
-            relations: ['trainer'],
-        });
 
-        if (!course) {
-            throw new NotFoundException('Course not found');
+   public async update(id: number, data: CoursesDto, file?: Express.Multer.File) {
+        try {
+            const course = await this.courseRepository.findOne({
+                where: { id },
+                relations: ['trainer'],
+            });
+
+            if (!course) {
+                throw new ErrorHandler('Course not found', HttpStatus.NOT_FOUND);
+            }
+
+            const trainer = await this.trainerRepository.findOneBy({
+                id: +data.trainer_id,
+            });
+
+            if (!trainer) {
+                throw new ErrorHandler('Trainer not found', HttpStatus.NOT_FOUND);
+            }
+
+            course.title = data.title;
+            course.description = data.description;
+            course.day = data.day;
+            course.time = data.time;
+            course.trainer = trainer;
+
+            if (file) {
+                course.icon = `/uploads/courses/${file.filename}`;
+            }
+
+            await this.courseRepository.save(course);
+
+            return await this.findOne(id);
+
+        } catch (error) {
+            if (error instanceof ErrorHandler) {
+                throw error;
+            }
+
+            throw new ErrorHandler(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        const trainer = await this.trainerRepository.findOneBy({
-            id: +data.trainer_id,
-        });
-
-        if (!trainer) {
-            throw new NotFoundException('Trainer not found');
-        }
-
-        course.title = data.title;
-        course.description = data.description;
-        course.day = data.day;
-        course.time = data.time;
-        course.trainer = trainer;
-
-        if (file) {
-            course.icon = `/uploads/courses/${file.filename}`;
-        }
-
-        await this.courseRepository.save(course);
-
-        return this.findOne(id);
     }
 
-    async remove(id: number) {
-        await this.courseRepository.delete(id);
-        return { message: 'Course deleted successfully' };
+
+
+
+  public  async remove(id: number) {
+        try {
+            const course = await this.courseRepository.findOne({
+                where: { id },
+            });
+
+            if (!course) {
+                throw new ErrorHandler('Course not found', HttpStatus.NOT_FOUND);
+            }
+
+            await this.courseRepository.delete(id);
+
+            return { message: 'Course deleted successfully' };
+
+        } catch (error) {
+            if (error instanceof ErrorHandler) {
+                throw error;
+            }
+
+            throw new ErrorHandler(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     public async registerToCourse(data: any): Promise<any> {
