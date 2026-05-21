@@ -21,6 +21,10 @@ export class SendEmailService {
             </div>
         `
             });
+            return {
+                message: 'Email sent successfully',
+                status: 200,
+            };
         } catch (err) {
             console.error("Error sending email:", err);
             throw new HttpException("email could not be send", 500);

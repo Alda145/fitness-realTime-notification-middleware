@@ -3,6 +3,12 @@ import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@
 export class AdminGuard implements CanActivate {
     public canActivate(context: ExecutionContext): boolean {
         const request = context.switchToHttp().getRequest();
+        // console.log("Cfare ka brenda contexti :", context);
+        // console.log("request is :" , request);
+        console.log("req.params" , request.params.id)
+        
+        // console.log("Metoda qe kthen controllerin", context.getClass().name)
+        // console.log("Metoda qe kthen metoden qe po ekzekutohet:", context.getHandler().name)
 
         const user = request.user;
         console.log("user---", user);

@@ -8,6 +8,7 @@ export class SendEmailController {
 
     @Post('post')
     public async send(@Body() message: any) {
+        console.log("message" ,message )
         return await this.sendEmail.sendEmail(message);
     }
 }

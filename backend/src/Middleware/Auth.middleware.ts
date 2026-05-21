@@ -11,7 +11,7 @@ export class AuthMiddleware implements NestMiddleware {
     ) { }
     async use(req: Request, res: Response, next: NextFunction) {
         const token = req.cookies?.jwt;
-
+        console.log("tokeni i userit :",token)
         // 1-kontrollojme kemi apo jo token nga request!!
         if (!token) {
             throw new UnauthorizedException('No token provided');
@@ -19,9 +19,11 @@ export class AuthMiddleware implements NestMiddleware {
         try {
             // 2-verifikojme tokenin
             const payload = this.jwtService.verify(token);
+            console.log("payload is :", payload)
 
             //3-gjejme userin me id ku id e kemi marre nga request
             const user = await this.userService.findOne(payload.id);
+            console.log("useri eshte :",user )
 
             if (!user) {
                 throw new UnauthorizedException('User not found');

@@ -8,7 +8,8 @@ import {
     Delete,
     UploadedFile,
     UseInterceptors,
-    UseGuards
+    UseGuards,
+    ParseIntPipe
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CoursesDto } from './DTO/Courses.dto';
@@ -39,6 +40,8 @@ export class CoursesController {
         @UploadedFile() file: Express.Multer.File,
         @Body() data: CoursesDto,
     ) {
+        console.log("Te dhenat e body jane :",data);
+        console.log("File  ka keto vlera",file);
         return this.coursesService.create(data, file);
     }
 
@@ -67,16 +70,16 @@ export class CoursesController {
         }),
     )
     update(
-        @Param('id') id: string,
+        @Param('id',ParseIntPipe) id: number,
         @UploadedFile() file: Express.Multer.File,
         @Body() data: CoursesDto,
     ) {
-        return this.coursesService.update(+id, data, file);
+        return this.coursesService.update(id, data, file);
     }
 
     @UseGuards(AdminGuard)
     @Delete(':id')
-    remove(@Param('id') id: string) {
-        return this.coursesService.remove(+id);
+    remove(@Param('id', ParseIntPipe) id: number) {
+        return this.coursesService.remove(id);
     }
 }

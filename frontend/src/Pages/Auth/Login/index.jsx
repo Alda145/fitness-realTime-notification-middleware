@@ -35,7 +35,9 @@ export default function Login({ show, handleClose, handleShowRegister }) {
                 handleClose();
                 if (result.data?.role === "admin" || result.data?.role === "manager") {
                     console.log("A kemi admin:", result.data?.role)
-                    navigate("/admin");
+                    setTimeout(() => {
+                        navigate("/admin");
+                    }, 300);
                 }
             }
         } catch (error) {

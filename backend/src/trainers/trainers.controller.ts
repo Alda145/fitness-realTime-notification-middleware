@@ -55,17 +55,17 @@ export class TrainersController {
     }
 
 
-    // @UseGuards(RolesGuard)
-    // @Roles('manager')
-    // @Get(':id')
-    // findOne(@Param('id') id: string) {
-    //     return this.trainersService.findOne(+id);
-    // }
-
+    @UseGuards(RolesGuard)
+    @Roles('admin')
     @Get(':id')
-    public async getOne(@Param('id', TransformParamToInt) id: number) {
-        return await this.trainersService.findOne(id);
+    public async findOne(@Param('id',ParseIntPipe) id: number) {
+        return this.trainersService.findOne(id);
     }
+
+    // @Get(':id')
+    // public async getOne(@Param('id', TransformParamToInt) id: number) {
+    //     return await this.trainersService.findOne(id);
+    // }
 
     // @Get(':id')
     // public async findOne(@Param('id') id: number) {
@@ -87,16 +87,16 @@ export class TrainersController {
         }),
     )
     public async update(
-        @Param('id') id: string,
+        @Param('id',ParseIntPipe) id: number,
         @UploadedFile() file: Express.Multer.File,
         @Body() data: TrainersDto,
     ) {
-        return await this.trainersService.update(+id, data, file);
+        return await this.trainersService.update(id, data, file);
     }
 
     @UseGuards(AdminGuard)
     @Delete(':id')
-    public async remove(@Param('id') id: string) {
-        return await this.trainersService.remove(+id);
+    public async remove(@Param('id',ParseIntPipe) id: number) {
+        return await this.trainersService.remove(id);
     }
 }

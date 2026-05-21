@@ -34,8 +34,10 @@ export default function ContactSection() {
         event.preventDefault();
         console.log("form", form);
         const result = await axios.post("http://localhost:3000/sendEmail/post", form);
-        //console.log("result", result);
-        //if result === 200 sendEmailStatus(true);
+        console.log("result", result.data);
+        if (result.status === 201) {
+            setSendEmailStatus(true); 
+            }
 
     }
 

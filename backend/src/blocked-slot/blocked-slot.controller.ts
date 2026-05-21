@@ -7,6 +7,7 @@ import {
     Patch,
     Delete,
     UseGuards,
+    ParseIntPipe,
 } from '@nestjs/common';
 import { BlockedSlotService } from './blocked-slot.service';
 import { BlockedSlotDto } from './DTO/BlockedSlot.dto';
@@ -34,21 +35,21 @@ export class BlockedSlotController {
     // GET ONE
     @UseGuards(AdminGuard)
     @Get(':id')
-    findOne(@Param('id') id: string): Promise<BlockedSlotEntity> {
-        return this.blockedSlotService.findOne(+id);
+    findOne(@Param('id',ParseIntPipe) id: number): Promise<BlockedSlotEntity> {
+        return this.blockedSlotService.findOne(id);
     }
 
     // UPDATE (pa DTO)
     @UseGuards(AdminGuard)
     @Patch(':id')
-    update(@Param('id') id: string, @Body() body: any) {
-        return this.blockedSlotService.update(+id, body);
+    update(@Param('id',ParseIntPipe) id: number, @Body() body: any) {
+        return this.blockedSlotService.update(id, body);
     }
 
     // DELETE
     @UseGuards(AdminGuard)
     @Delete(':id')
-    remove(@Param('id') id: string) {
-        return this.blockedSlotService.remove(+id);
+    remove(@Param('id',ParseIntPipe) id: number) {
+        return this.blockedSlotService.remove(id);
     }
 }

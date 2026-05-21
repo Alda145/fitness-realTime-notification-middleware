@@ -18,16 +18,17 @@ const resources = {
         translation: translationES,
     },
 };
-
+console.log("i18n para :", i18n);
 i18n
     .use(detector)
-    .use(initReactI18next) // passes i18n down to react-i18next
+    .use(initReactI18next) //lidh react me i18n 
     .init({
         resources,
-        fallbackLng: "it", // use en if detected lng is not available
+        fallbackLng: "it", // use it if detected lng is not available
         interpolation: {
             escapeValue: false // react already safes from xss
         }
     });
+
 
 export default i18n;

@@ -14,7 +14,7 @@ export class AuthController {
     @Post('register')
     public async register(@Body() body: UserDto, @Res({ passthrough: true }) response: Response): Promise<UserEntity> {
         const { user, token } = await this.authService.register(body);
-        response.cookie('jwt', token, { httpOnly: true })
+        response.cookie('jwt', token, { httpOnly: true, path: '/', })
         return user
     }
 
@@ -29,7 +29,9 @@ export class AuthController {
     public logout(@Res({ passthrough: true }) response: Response) {
         console.log("response", response)
         console.log("response", response.cookie)
-        response.clearCookie('jwt');
+        response.clearCookie('jwt', {
+            path: '/',
+        });
         return { "message": "success ", "status": 201 }
     }
     @Get('checkUser')

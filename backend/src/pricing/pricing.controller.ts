@@ -1,4 +1,4 @@
-import { Post, Get, Body, Controller, Param ,Put, Delete} from '@nestjs/common';
+import { Post, Get, Body, Controller, Param ,Put, Delete, ParseIntPipe} from '@nestjs/common';
 import { PricingService } from './pricing.service';
 import { PricingDto } from './DTO/pricing.dto';
 import { PricingEntity } from './Entity/pricing.Entity';
@@ -17,15 +17,15 @@ export class PricingController {
         return await this.pricingService.getAllPricing()
     }
     @Get(':id')
-    public async findOne(@Param('id') id: number): Promise<PricingEntity> {
+    public async findOne(@Param('id',ParseIntPipe) id: number): Promise<PricingEntity> {
         return await this.pricingService.findOne(id)
     }
     @Put(':id')
-    public async updatePricing(@Param('id') id:number ,@Body() body:PricingDto):Promise<PricingEntity>{
+    public async updatePricing(@Param('id',ParseIntPipe) id:number ,@Body() body:PricingDto):Promise<PricingEntity>{
         return await this.pricingService.updatePricing(id,body)
     }
     @Delete(':id')
-    public async removePricing(@Param('id') id:number):Promise<void>{
+    public async removePricing(@Param('id',ParseIntPipe) id:number):Promise<void>{
         return await this.pricingService.removePricing(id)
     }
 }
