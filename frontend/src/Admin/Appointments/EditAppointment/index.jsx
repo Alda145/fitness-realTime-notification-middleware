@@ -60,6 +60,7 @@ const EditAppointment = ({ show, handleClose, id }) => {
         e.preventDefault()
         try {
             const result = await updateAppointment(id, formData);
+            console.log("result", result)
             if (result) {
                 handleClose();
             }

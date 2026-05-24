@@ -42,10 +42,7 @@ export class TrainersController {
             }),
         }),
     )
-    create(
-        @UploadedFile() file: Express.Multer.File,
-        @Body() data: TrainersDto,
-    ) {
+    create(@UploadedFile() file: Express.Multer.File,@Body() data: TrainersDto,) {
         return this.trainersService.create(data, file);
     }
 

@@ -33,7 +33,7 @@ import { PaymentModule } from './payment/payment.module';
       username: process.env.DB_USER || 'root',
       password: process.env.DB_PASSWORD || '',
       database: process.env.DB_NAME || 'fitness',
-      entities: [CourseEntity, TrainerEntity, AppointmentEntity, BlockedSlotEntity, UserEntity, HighlightsEntity, CourseEnrollmentEntity,PricingEntity],
+      entities: [CourseEntity, TrainerEntity, AppointmentEntity, BlockedSlotEntity, UserEntity, HighlightsEntity, CourseEnrollmentEntity, PricingEntity],
       autoLoadEntities: true,
       synchronize: true,
     }),
@@ -68,8 +68,19 @@ export class AppModule implements NestModule {
         { path: 'blocked-slot', method: RequestMethod.POST },
         { path: 'blocked-slot/:id', method: RequestMethod.PATCH },
         { path: 'blocked-slot/:id', method: RequestMethod.DELETE },
+        { path: 'blocked-slot/:id', method: RequestMethod.GET },
+
 
         { path: 'appointment/book-appointment', method: RequestMethod.POST },
-        { path: 'appointment/:id', method: RequestMethod.DELETE });
+        { path: 'appointment/appointmentTable', method: RequestMethod.GET },
+        //  { path: 'appointment/:id', method: RequestMethod.GET },
+        { path: 'appointment/:id', method: RequestMethod.DELETE },
+        { path: 'appointment/:id', method: RequestMethod.PATCH },
+
+        { path: 'user/register-course', method: RequestMethod.POST },
+        { path: 'user/all-enrollment/:id', method: RequestMethod.GET },
+
+
+      )
   }
 }

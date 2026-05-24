@@ -41,7 +41,7 @@ export class TrainersService {
                 instagram: data.instagram ?? '',
                 linkedin: data.linkedin ?? '',
             });
-
+            console.log("trainer is :", newTrainer)
             return await this.trainerRepository.save(newTrainer);
 
         } catch (error) {
@@ -57,9 +57,11 @@ export class TrainersService {
     // }
     public async findAll() {
         try {
-            return await this.trainerRepository.find({
+            const allTrainers = await this.trainerRepository.find({
                 relations: ['courses'],
             });
+            console.log("trainer with courses:", allTrainers)
+            return allTrainers;
 
         } catch (error) {
             throw new ErrorHandler(error.message, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -14,12 +14,14 @@ export class AppointmentEntity {
     @Column({ type: 'text', nullable: true })
     notes?: string;
 
+    
     @Column({ type: 'datetime' })
     startTime: Date;
 
     @Column({ type: "enum", enum: ["accept", "pending", "reject"], default: "pending" })
     status:string
 
+    
     @Column({ type: 'datetime' })
     endTime: Date;
 }

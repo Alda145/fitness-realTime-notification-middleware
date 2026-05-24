@@ -46,10 +46,11 @@ const ModalCourses = ({ show, handleClose, singleCourse }) => {
     const handleRegisterToCourses = async () => {
         try {
             const result = await registerToCourse(user.id, singleCourse.id);
-            console.log(result)
-            if (result.status === 200) {
+            console.log("result,", result)
+            if (result.status === 201) {
                 setEnrollment({ message: result.message, status: result.status });
             }
+            console.log("enrollment", enrollment)
             return
         } catch (error) {
             console.log(error);

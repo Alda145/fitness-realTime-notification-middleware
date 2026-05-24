@@ -40,6 +40,8 @@ export class CoursesService {
                 trainer: trainer,
             });
 
+            console.log("newCourse is:", newCourse)
+
             return await this.courseRepository.save(newCourse);
 
         } catch (error) {
@@ -54,9 +56,10 @@ export class CoursesService {
 
   public  async findAll() {
         try {
-            return await this.courseRepository.find({
+        const courses = await this.courseRepository.find({
                 relations: ['trainer'],
             });
+            return courses;
 
         } catch (error) {
             throw new ErrorHandler(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -156,6 +159,7 @@ export class CoursesService {
     }
 
     public async registerToCourse(data: any): Promise<any> {
+        console.log("data is",data);
         const { user_id, course_id } = data;
 
         try {
@@ -166,6 +170,7 @@ export class CoursesService {
                 },
                 relations: ['user', 'course']
             });
+            console.log("existing :",existing)
 
             if (existing) {
                 throw new ErrorHandler("You are already registered", HttpStatus.FOUND);
@@ -175,10 +180,10 @@ export class CoursesService {
                 user: { id: user_id },
                 course: { id: course_id }
             });
-
+            console.log("enrollment", enrollment)
             await this.courseEnrollmentEntityRepository.save(enrollment);
 
-            return { message: "Registered successfully", status: 200 };
+            return { message: "Registered successfully", status: 201 };
 
         } catch (error) {
             throw new ErrorHandler(error.message, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -58,12 +58,15 @@ export class AppointmentService {
 
     }
 
-    async bookAppointment(dto: CreateAppointmentDto): Promise<AppointmentEntity> {
+    async bookAppointment(data: CreateAppointmentDto): Promise<AppointmentEntity> {
         try {
             const appointment = this.appointmentRepository.create({
-                ...dto,
-                startTime: new Date(dto.startTime),
-                endTime: new Date(dto.endTime),
+                fullName: data.fullName,
+                phone: data.phone,
+                notes: data.notes,
+                status: data.status,
+                startTime: new Date(data.startTime),
+                endTime: new Date(data.endTime),
             });
 
             const savedAppointment = await this.appointmentRepository.save(appointment);
@@ -103,9 +106,9 @@ export class AppointmentService {
         return { message: 'Appointment deleted successfully' };
     }
 
-    findOne(id: number) {
+    async findOne(id: number) {
 
-        return this.appointmentRepository.findOne({
+        return await this.appointmentRepository.findOne({
             where: { id }
         })
 

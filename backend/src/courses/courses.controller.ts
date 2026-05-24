@@ -56,7 +56,7 @@ export class CoursesController {
         return this.coursesService.findOne(+id);
     }
     
-   // @UseGuards(AdminGuard)
+   @UseGuards(AdminGuard)
     @Patch(':id')
     @UseInterceptors(
         FileInterceptor('icon', {
@@ -77,7 +77,7 @@ export class CoursesController {
         return this.coursesService.update(id, data, file);
     }
 
-    @UseGuards(AdminGuard)
+    //@UseGuards(AdminGuard)
     @Delete(':id')
     remove(@Param('id', ParseIntPipe) id: number) {
         return this.coursesService.remove(id);
