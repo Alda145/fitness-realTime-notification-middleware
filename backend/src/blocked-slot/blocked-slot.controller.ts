@@ -22,34 +22,34 @@ export class BlockedSlotController {
     // CREATE
     @UseGuards(AdminGuard)
     @Post()
-    create(@Body() dto: BlockedSlotDto): Promise<BlockedSlotEntity> {
-        return this.blockedSlotService.create(dto);
+    public async create(@Body() dto: BlockedSlotDto): Promise<BlockedSlotEntity> {
+        return await this.blockedSlotService.create(dto);
     }
 
     // GET ALL
     @Get()
-    findAll(): Promise<BlockedSlotEntity[]> {
-        return this.blockedSlotService.findAll();
+    public async findAll(): Promise<BlockedSlotEntity[]> {
+        return await this.blockedSlotService.findAll();
     }
 
     // GET ONE
     @UseGuards(AdminGuard)
     @Get(':id')
-    findOne(@Param('id',ParseIntPipe) id: number): Promise<BlockedSlotEntity> {
-        return this.blockedSlotService.findOne(id);
+    public async findOne(@Param('id', ParseIntPipe) id: number): Promise<BlockedSlotEntity> {
+        return await this.blockedSlotService.findOne(id);
     }
 
-    // UPDATE (pa DTO)
+    // UPDATE 
     @UseGuards(AdminGuard)
     @Patch(':id')
-    update(@Param('id',ParseIntPipe) id: number, @Body() body: any) {
-        return this.blockedSlotService.update(id, body);
+    public async update(@Param('id', ParseIntPipe) id: number, @Body() body: any) {
+        return await this.blockedSlotService.update(id, body);
     }
 
     // DELETE
     @UseGuards(AdminGuard)
     @Delete(':id')
-    remove(@Param('id',ParseIntPipe) id: number) {
-        return this.blockedSlotService.remove(id);
+    public async remove(@Param('id', ParseIntPipe) id: number) {
+        return await this.blockedSlotService.remove(id);
     }
 }

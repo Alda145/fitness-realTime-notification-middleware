@@ -30,6 +30,7 @@ export class AuthService {
             }
             const user = await this.userService.registerUser(userData);
             const token = await this.jwtService.signAsync({ id: user.id });
+            console.log("tokeni i krijuar ne regjistrim :", token)
             return { user, token };
         } catch (error) {
             throw new ErrorHandler(error.response, error.status);
@@ -60,6 +61,7 @@ export class AuthService {
                 throw new ErrorHandler("You are anathourized", HttpStatus.UNAUTHORIZED)
             }
             const decodedToken: any = this.jwtService.decode(jwt);
+            console.log("decoded:", decodedToken)
             const currentTime = Math.floor(Date.now() / 1000);
             if (decodedToken.exp < currentTime) {
                 throw new HttpException("Token expired", HttpStatus.UNAUTHORIZED)

@@ -33,7 +33,7 @@ export default function Pricing() {
     const getPricing = async () => {
         try {
             const result = await get_pricing_service();
-
+            console.log("result.data:", result.data)
             if (result.status === 200) {
                 setPricingList(result.data);
             }
@@ -42,6 +42,8 @@ export default function Pricing() {
         }
     };
 
+
+    //Ndaj membership normal me ato extras
     const membershipPrices = pricingList.filter(
         (item) => item.type === "membership"
     );
@@ -69,7 +71,7 @@ export default function Pricing() {
 
     console.log("membershipPrice", membershipPrice)
 
-    // Klikimi 2 here te i njejti buton te frquency
+    // Klikimi 2 here te i njejti buton te frequency
     const toggleMembership = (membershipName) => {
         if (selectedMembership === membershipName) {
             setSelectedMembership("");
@@ -134,10 +136,9 @@ export default function Pricing() {
     );
     console.log("selectedQuantityExtrasPrice", selectedQuantityExtrasPrice);
 
-    const totalPrice =
-        membershipPrice +
-        selectedNormalExtrasPrice +
-        selectedQuantityExtrasPrice;
+
+    //cmimi total eshte : 
+    const totalPrice =membershipPrice +selectedNormalExtrasPrice + selectedQuantityExtrasPrice;
 
     const getDurationLabel = (duration) => {
         if (duration === "1_month") return "1 Month";
@@ -152,7 +153,7 @@ export default function Pricing() {
         if (membership === "six_days") return "6 Times / Week";
         return "";
     };
-    console.log("getMembershipLabel is:", getMembershipLabel);
+    
 
 
 
@@ -163,7 +164,6 @@ export default function Pricing() {
     //UseEffect per vendosjen  e final price = total price ne fillim sapo behet perzgjedhja e nje abonimi
     useEffect(() => {
         const convertPrice = async () => {
-            console.log("useEffect u thirr");
             console.log("currency:", currency);
             console.log("totalPrice:", totalPrice);
 

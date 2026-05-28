@@ -23,23 +23,15 @@ export class PricingEntity {
     @Column()
     price: number;
 
-    @Column({
-        nullable: true,
-    })
+    @Column({nullable: true,})
     frequency: string;
 
-    @Column({
-        nullable: true,
-    })
+    @Column({nullable: true,})
     duration: string;
 
-    @Column({
-        nullable: true,
-    })
+    @Column({nullable: true,})
     gender: string;
 
-    @Column({
-        default: false,
-    })
+    @Column({default: false,})
     allowQuantity: boolean;
 }

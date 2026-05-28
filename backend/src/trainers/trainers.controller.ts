@@ -42,8 +42,8 @@ export class TrainersController {
             }),
         }),
     )
-    create(@UploadedFile() file: Express.Multer.File,@Body() data: TrainersDto,) {
-        return this.trainersService.create(data, file);
+    public async create(@UploadedFile() file: Express.Multer.File, @Body() data: TrainersDto,) {
+        return await this.trainersService.create(data, file);
     }
 
     @Get()
@@ -52,17 +52,17 @@ export class TrainersController {
     }
 
 
-    @UseGuards(RolesGuard)
-    @Roles('admin')
-    @Get(':id')
-    public async findOne(@Param('id',ParseIntPipe) id: number) {
-        return this.trainersService.findOne(id);
-    }
-
+    // @UseGuards(RolesGuard)
+    // @Roles('admin')
     // @Get(':id')
-    // public async getOne(@Param('id', TransformParamToInt) id: number) {
+    // public async findOne(@Param('id', ParseIntPipe) id: number) {
     //     return await this.trainersService.findOne(id);
     // }
+
+    @Get(':id')
+    public async getOne(@Param('id', TransformParamToInt) id: number) {
+        return await this.trainersService.findOne(id);
+    }
 
     // @Get(':id')
     // public async findOne(@Param('id') id: number) {
@@ -84,7 +84,7 @@ export class TrainersController {
         }),
     )
     public async update(
-        @Param('id',ParseIntPipe) id: number,
+        @Param('id', ParseIntPipe) id: number,
         @UploadedFile() file: Express.Multer.File,
         @Body() data: TrainersDto,
     ) {
@@ -93,7 +93,7 @@ export class TrainersController {
 
     @UseGuards(AdminGuard)
     @Delete(':id')
-    public async remove(@Param('id',ParseIntPipe) id: number) {
+    public async remove(@Param('id', ParseIntPipe) id: number) {
         return await this.trainersService.remove(id);
     }
 }

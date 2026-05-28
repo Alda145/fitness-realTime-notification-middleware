@@ -6,9 +6,12 @@ import axios from "axios";
 
 export default function SearchResults() {
     const location = useLocation();
+    console.log("location is :",location);
 
     const params = new URLSearchParams(location.search);
+    console.log("params is :", params);
     const query = params.get("q") || "";
+    console.log("query:",query);
 
     const [courses, setCourses] = useState([]);
     const [trainers, setTrainers] = useState([]);
@@ -45,8 +48,7 @@ export default function SearchResults() {
         return text.includes(query.toLowerCase());
     });
 
-    const hasResults =
-        filteredCourses.length > 0 || filteredTrainers.length > 0;
+    const hasResults =filteredCourses.length > 0 || filteredTrainers.length > 0;
 
     return (
         <div className="container py-5">

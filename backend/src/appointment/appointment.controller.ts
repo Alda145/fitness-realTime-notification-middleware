@@ -13,35 +13,35 @@ export class AppointmentController {
 
     @Post('book-appointment')
     public async bookAppointment(@Body() data: CreateAppointmentDto,): Promise<AppointmentEntity> {
-        return this.appointmentService.bookAppointment(data);
+        return await this.appointmentService.bookAppointment(data);
     }
 
     @Get('booked')
     public async getBookedAppointments(): Promise<AppointmentEntity[]> {
-        return this.appointmentService.getBookedAppointments();
+        return await this.appointmentService.getBookedAppointments();
     }
 
     //@UseGuards(AdminGuard)
     @Get('appointmentTable')
     public async getAppointmentTable(): Promise<AppointmentEntity[]> {
-        return this.appointmentService.getAppointmentTable()
+        return await this.appointmentService.getAppointmentTable()
     }
     @UseGuards(AdminGuard)
     @Delete(':id')
-    public remove(@Param('id', ParseIntPipe) id: number) {
-        return this.appointmentService.remove(id);
+    public async remove(@Param('id', ParseIntPipe) id: number) {
+        return await this.appointmentService.remove(id);
     }
 
-   // @UseGuards(AdminGuard)
+    // @UseGuards(AdminGuard)
     @Get(':id')
-    findOne(@Param('id', ParseIntPipe) id: number) {
-        return this.appointmentService.findOne(id);
+    public async findOne(@Param('id', ParseIntPipe) id: number) {
+        return await this.appointmentService.findOne(id);
 
     }
     @UseGuards(AdminGuard)
     @Patch(':id')
-    updateAppointment(@Param('id', ParseIntPipe) id: number, @Body() dto: CreateAppointmentDto,) {
-        return this.appointmentService.updateAppointment(id, dto);
+    public async updateAppointment(@Param('id', ParseIntPipe) id: number, @Body() dto: CreateAppointmentDto,) {
+        return await this.appointmentService.updateAppointment(id, dto);
     }
 
 }

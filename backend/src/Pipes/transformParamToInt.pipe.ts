@@ -13,7 +13,7 @@ export class TransformParamToInt implements PipeTransform {
             console.log("inside PipeTransform")
             return parseInt(myValue);
         } else {
-            throw new BadRequestException(`this parameter: ${myValue} is not a Number`)
+            throw new BadRequestException(`this parameter: ${value} is not a Number`)
         }
     }
 }

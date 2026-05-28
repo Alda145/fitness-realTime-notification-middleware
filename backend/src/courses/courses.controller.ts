@@ -36,27 +36,27 @@ export class CoursesController {
             }),
         }),
     )
-    create(
+    public async create(
         @UploadedFile() file: Express.Multer.File,
         @Body() data: CoursesDto,
     ) {
-        console.log("Te dhenat e body jane :",data);
-        console.log("File  ka keto vlera",file);
-        return this.coursesService.create(data, file);
+        console.log("Te dhenat e body jane :", data);
+        console.log("File  ka keto vlera", file);
+        return await this.coursesService.create(data, file);
     }
 
     @Get()
-    findAll() {
-        return this.coursesService.findAll();
+    public async findAll() {
+        return await this.coursesService.findAll();
     }
 
-   // @UseGuards(AdminGuard)
+    // @UseGuards(AdminGuard)
     @Get(':id')
     findOne(@Param('id') id: string) {
         return this.coursesService.findOne(+id);
     }
-    
-   @UseGuards(AdminGuard)
+
+    @UseGuards(AdminGuard)
     @Patch(':id')
     @UseInterceptors(
         FileInterceptor('icon', {
@@ -69,17 +69,13 @@ export class CoursesController {
             }),
         }),
     )
-    update(
-        @Param('id',ParseIntPipe) id: number,
-        @UploadedFile() file: Express.Multer.File,
-        @Body() data: CoursesDto,
-    ) {
-        return this.coursesService.update(id, data, file);
+    public async update(@Param('id', ParseIntPipe) id: number, @UploadedFile() file: Express.Multer.File, @Body() data: CoursesDto,) {
+        return await this.coursesService.update(id, data, file);
     }
 
     //@UseGuards(AdminGuard)
     @Delete(':id')
-    remove(@Param('id', ParseIntPipe) id: number) {
-        return this.coursesService.remove(id);
+    public async remove(@Param('id', ParseIntPipe) id: number) {
+        return await this.coursesService.remove(id);
     }
 }

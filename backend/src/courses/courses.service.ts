@@ -204,6 +204,8 @@ export class CoursesService {
                 }
             });
 
+            console.log("enrollement:",enrollments);
+
             return enrollments;
         } catch (error) {
             console.log("GET USER ENROLLMENTS ERROR:", error);

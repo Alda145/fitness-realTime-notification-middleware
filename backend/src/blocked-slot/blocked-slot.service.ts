@@ -67,7 +67,7 @@ export class BlockedSlotService {
     }
 
     // UPDATE (pa DTO)
-    async update(id: number, body: any): Promise<BlockedSlotEntity> {
+    async update(id: number, body: BlockedSlotDto): Promise<BlockedSlotEntity> {
         const blockedSlot = await this.findOne(id);
 
         const startTime = body.startTime

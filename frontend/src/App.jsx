@@ -50,13 +50,7 @@ function App() {
         <Route path="/testimonial" element={<Testimonial />} />
         <Route path="/team" element={<Team />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/admin"
-          element={
-            <AdminRoute>
-              <Admin />
-            </AdminRoute>
-          }
-        >
+        <Route path="/admin" element={<AdminRoute> <Admin /></AdminRoute>} >
           <Route index element={<Dashboard />} />
           <Route path="trainers" element={<Trainers />} />
           <Route path="trainers/create/" element={<CreateTrainer />} />

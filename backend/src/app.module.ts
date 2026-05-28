@@ -71,7 +71,7 @@ export class AppModule implements NestModule {
         { path: 'blocked-slot/:id', method: RequestMethod.GET },
 
 
-        { path: 'appointment/book-appointment', method: RequestMethod.POST },
+       //{ path: 'appointment/book-appointment', method: RequestMethod.POST},
         { path: 'appointment/appointmentTable', method: RequestMethod.GET },
         //  { path: 'appointment/:id', method: RequestMethod.GET },
         { path: 'appointment/:id', method: RequestMethod.DELETE },

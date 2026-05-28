@@ -1,4 +1,4 @@
-import {useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Modal, Button, Form, Row, Col, Badge } from "react-bootstrap";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -9,6 +9,8 @@ import './index.css'
 import axios from "axios";
 
 export default function AppointmentModal({ show, handleClose }) {
+    console.log("show", show)
+
     const { t } = useTranslation();
     const BACKEND_URL = "http://localhost:3000/appointment/book-appointment";
 
@@ -25,12 +27,31 @@ export default function AppointmentModal({ show, handleClose }) {
 
     const [calendarView, setCalendarView] = useState("timeGridWeek");
 
+    //UseEfecti i pare qe ekzekutohet 
+    useEffect(() => {
+        const updateView = () => {
+            if (window.innerWidth < 768) {
+                setCalendarView("timeGridDay");
+            } else {
+                setCalendarView("timeGridWeek");
+            }
+        };
+
+        updateView();
+        window.addEventListener("resize", updateView);
+
+        return () => window.removeEventListener("resize", updateView);
+    }, []);
+
+    //Marrja e te dhenave te futura nga useri dhe admini  nga backendi dhe transformimi ne formatin calendar:
     const fetchCalendarEvents = async () => {
         try {
             const bookedResponse = await axios.get("http://localhost:3000/appointment/booked");
             const blockedResponse = await axios.get("http://localhost:3000/blocked-slot");
 
             console.log("BOOKED RESPONSE:", bookedResponse.data);
+            console.log("BLOKED RESPONSE:", blockedResponse.data);
+
 
             const booked = bookedResponse.data.map((ev) => ({
                 title: ev.status == 'accept' ? 'booked' : ev.status,
@@ -55,7 +76,7 @@ export default function AppointmentModal({ show, handleClose }) {
                     backgroundColor: color,
                     borderColor: color,
                     display: "background",
-                    textColor: ev.title === "Pushim" ? "#000" : "#fff",
+                    // textColor: ev.title === "Pushim" ? "#6c757d" : "#fff",
                 };
             });
             console.log("BOOKED EVENTS:", booked);
@@ -67,6 +88,7 @@ export default function AppointmentModal({ show, handleClose }) {
             console.error("Error fetching calendar events:", error);
         }
     };
+
     useEffect(() => {
         if (!show) return;
 
@@ -84,20 +106,7 @@ export default function AppointmentModal({ show, handleClose }) {
         };
     }, [show]);
 
-    useEffect(() => {
-        const updateView = () => {
-            if (window.innerWidth < 768) {
-                setCalendarView("timeGridDay");
-            } else {
-                setCalendarView("timeGridWeek");
-            }
-        };
 
-        updateView();
-        window.addEventListener("resize", updateView);
-
-        return () => window.removeEventListener("resize", updateView);
-    }, []);
 
 
     const selectedEvent = selectedSlot
@@ -125,6 +134,7 @@ export default function AppointmentModal({ show, handleClose }) {
         }));
     };
 
+    //Kontrollojme nese nje orar eshte i zene apo jo 
     const isBookedSlot = (start, end) => {
         const allUnavailableEvents = [...bookedEvents, ...blockedSlotEvents];
 
@@ -140,6 +150,7 @@ export default function AppointmentModal({ show, handleClose }) {
     };
 
     const handleSelect = (selectionInfo) => {
+        console.log("selectionInfo:", selectionInfo)
         const slotIsBooked = isBookedSlot(
             selectionInfo.startStr,
             selectionInfo.endStr
@@ -181,20 +192,11 @@ export default function AppointmentModal({ show, handleClose }) {
             alert(error.response?.data?.message || "Ndodhi një gabim gjatë rezervimit të termin.");
         }
 
-        // console.log("Appointment payload:", payload);
-        // alert("Frontend appointment u ruajt për test.");
 
-        // setFormData({
-        //     fullName: "",
-        //     phone: "",
-        //     notes: "",
-        // });
-        // setSelectedSlot(null);
-        // handleClose();
     };
 
     const formatSelectedSlot = () => {
-        if (!selectedSlot) return t("appointmentModal.noSelected") ;
+        if (!selectedSlot) return t("appointmentModal.noSelected");
 
         const start = new Date(selectedSlot.startStr);
         const end = new Date(selectedSlot.endStr);

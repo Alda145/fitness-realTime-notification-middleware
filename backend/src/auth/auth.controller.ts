@@ -27,8 +27,8 @@ export class AuthController {
 
     @Post('logout')
     public logout(@Res({ passthrough: true }) response: Response) {
-        console.log("response", response)
-        console.log("response", response.cookie)
+       // console.log("response", response)
+      //  console.log("response", response.cookie)
         response.clearCookie('jwt', {
             path: '/',
         });
@@ -37,7 +37,7 @@ export class AuthController {
     @Get('checkUser')
     public async checkAuthUser(@Req() request: Request): Promise<UserEntity[]> {
         const id = await this.authService.authUserId(request)
-        console.log("result----", id);
+        console.log("The id of the checkuser:", id);
         return await this.authService.getUserById(id)
     }
 
