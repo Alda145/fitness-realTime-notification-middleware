@@ -52,17 +52,17 @@ export class TrainersController {
     }
 
 
-    // @UseGuards(RolesGuard)
-    // @Roles('admin')
-    // @Get(':id')
-    // public async findOne(@Param('id', ParseIntPipe) id: number) {
-    //     return await this.trainersService.findOne(id);
-    // }
-
+    @UseGuards(RolesGuard)
+    @Roles('admin')
     @Get(':id')
-    public async getOne(@Param('id', TransformParamToInt) id: number) {
+    public async findOne(@Param('id', ParseIntPipe) id: number) {
         return await this.trainersService.findOne(id);
     }
+
+    // @Get(':id')
+    // public async getOne(@Param('id', TransformParamToInt) id: number) {
+    //     return await this.trainersService.findOne(id);
+    // }
 
     // @Get(':id')
     // public async findOne(@Param('id') id: number) {

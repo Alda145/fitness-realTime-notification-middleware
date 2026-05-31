@@ -1,6 +1,5 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-console.log("Emaili :", process.env.EMAIL_USER)
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
